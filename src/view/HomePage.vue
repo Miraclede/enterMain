@@ -3,10 +3,9 @@
     <!-- 轮播图 -->
     <swiper
       id="swiper"
-      :modules="modules"
+      :modules="[Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay]"
       :slides-per-view="1"
       :space-between="0"
-      navigation
       lazy
       loop
       autoplay
@@ -31,25 +30,42 @@
     <!-- 大数据管理系统 -->
     <div id="bigData" class="container-fuild">
       <div class="row bigData-container">
-        <div class="col-xs-12 col-sm-12 col-md-6 wow zoomIn">
-          <img
-            class="img-responsive"
-            src="@/assets/img/img1.png"
-            alt="大数据管理系统"
-          />
+        <div
+          style="text-align: center; display: flex; justify-content: center"
+          class="col-xs-12 col-sm-12 col-md-6 wow zoomIn"
+        >
+          <div style="max-width: 600px">
+            <img
+              class="img-responsive"
+              src="@/assets/img/img1.png"
+              alt="大数据管理系统"
+            />
+          </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
           <h2 class="bigData-title">
-            大数据管理系统
-            <small>/ Big Data Management System</small>
+            国家工业互联网标识解析安全应急行业公共服务平台
+            <span
+              style="color: aqua; font-size: 23px"
+              class="glyphicon glyphicon-link"
+            ></span>
+            <!-- <small>/ Big Data Management System</small> -->
           </h2>
-          <p>
-            当今最领先的响应式自助建站平台。无论您是普通互联网用户，还是专业网站制作人员，都能使用起飞页设计出最具专业水准的网站。想创建一个简单的单页式站点，还是一个专业的公司网站，亦或是一个别具一格的博客？起飞页可以满足您的所有需求。
+          <p style="margin-bottom: 3rem">
+            贯通数据全生命周期管理，助力企业数据治理，积聚技术及产业资源，推动市场转化和产业孵化。
           </p>
-          <p>
-            我们的流线式网页布局设计方案和可视化图文内容编辑模式让网站制作和维护成为一件轻松惬意的事。无论您是普通互联网用户，还是专业网站制作人员。
+          <h2 class="bigData-title">
+            城市安全运营平台
+            <span
+              style="color: aqua; font-size: 23px"
+              class="glyphicon glyphicon-link"
+            ></span>
+            <!-- <small>/ Big Data Management System</small> -->
+          </h2>
+          <p style="margin-bottom: 3rem">
+            特色“工具”赋能企业预警应急，整合行业产业资源，构建“预防-监测-预警-快处”特色城市安全管理体系。
           </p>
-          <h2 class="bigData-device">PC/PAD/Phone &nbsp; 全设备支持</h2>
+
           <a href="javascript:;" class="btn btn-lg btn-block btn-info"
             >联系我们</a
           >
@@ -57,11 +73,13 @@
       </div>
     </div>
 
-    <!-- 您身边的IT专家 -->
+    <!-- 整体解决方案服务商 -->
     <div id="contactUs" class="container-fuild text-center">
       <div class="container contactUs-container wow slideInUp">
-        <h1>您身边的IT专家</h1>
-        <h3>7x24小时提供出色的IT服务</h3>
+        <h1>{{ company }}</h1>
+        <div style="font-size: 20px; margin: 20px 0">
+          “工业互联网+安全生产”整体解决方案服务商
+        </div>
         <button
           class="btn btn-default btn-sm"
           onmouseleave="this.style.borderColor='#ffffff'; this.style.backgroundColor='#ffffff'; this.style.color='#3f3f3f';"
@@ -69,18 +87,20 @@
         >
           联系我们
         </button>
-        <div class="contactUs-contactWay">
+        <!-- <div class="contactUs-contactWay">
           <span></span>
           <span></span>
           <span></span>
-        </div>
+        </div> -->
       </div>
     </div>
 
-    <!-- 客户评价 -->
+    <!-- 基于工业互联网的全流程产品及服务体系 -->
     <div id="customer" class="container-fuild">
       <div class="container customer-container">
-        <p class="customer-title text-center">客户评价</p>
+        <p class="customer-title text-center">
+          基于工业互联网的全流程产品及服务体系
+        </p>
         <swiper
           class="swiper-container customer-swiper hidden-xs"
           :modules="modules"
@@ -101,16 +121,16 @@
             <div class="customer-logo">
               <img class="center-block" :src="item.logo" alt="logo" />
             </div>
-            <div class="customer-yh">
-              <img src="@/assets/img/yinhao.png" alt="引号" />
-            </div>
+            <div class="customer-title">{{ item.title }}</div>
+
             <div class="customer-content1">
               <small>{{ item.content }}</small>
             </div>
-            <div class="customer-content2">{{ item.title }}</div>
+            <div class="customer-content2">{{ item.remark }}</div>
           </swiper-slide>
         </swiper>
 
+        <!-- 移动端 -->
         <div class="row visible-xs customer-block">
           <div
             class="col-xs-12"
@@ -138,12 +158,25 @@
     <div id="whyChooseUs" class="conatiner-fuild">
       <div class="container">
         <div class="whyChooseUs-title text-center">
-          <p>为什么选择我们的服务</p>
-          <p>THE REASON TO CHOOSING US</p>
+          <p>荣誉资质</p>
         </div>
-        <div class="row">
-          <div
-            class="col-xs-12 col-sm-6 col-md-3 server-wrapper"
+
+        <swiper
+          :modules="modules"
+          :slides-per-view="4"
+          :space-between="10"
+          lazy
+          loop
+          :autoplay="{
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }"
+          class="my-swiper"
+          :speed="6000"
+        >
+          <swiper-slide
+            class="honor-swiper"
             v-for="(item, index) in serverList"
             :key="index"
           >
@@ -152,17 +185,28 @@
               onmouseenter="this.style.color='#28f';this.style.borderColor='#28f'"
               onmouseleave="this.style.color='#666';this.style.borderColor='#ccc'"
             >
+              <p
+                class="text-center"
+                style="
+                  display: inline-block;
+                  min-height: 55px;
+                  text-align: center;
+                  width: 100%;
+                "
+              >
+                {{ item.title }}
+              </p>
               <img class="center-block" :src="item.logo" alt="logo" />
-              <p class="text-center">{{ item.title }}</p>
               <div
                 class="text-center"
+                style="min-height: 85px"
                 v-html="item.content"
                 onmouseenter="this.style.color='#28f'"
                 onmouseleave="this.style.color='#ccc'"
               ></div>
             </div>
-          </div>
-        </div>
+          </swiper-slide>
+        </swiper>
       </div>
     </div>
   </div>
@@ -170,9 +214,9 @@
 
 <script setup name="HomePage">
 import WOW from 'wow.js'
-import { getCurrentInstance, onMounted } from 'vue'
-// import Swiper from 'swiper'
+import { getCurrentInstance, onMounted,ref } from 'vue'
 import { Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay } from 'swiper'
+const company = import.meta.env.VITE_APP_COMPANYNAME
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -188,31 +232,31 @@ import logo_hp from '@/assets/img/logo_hp.png'
 import logo_kk from '@/assets/img/logo_kk.png'
 import logo_toyota from '@/assets/img/logo_toyota.png'
 
-import img_tel from '@/assets/img/tel.png'
-import img_computer from '@/assets/img/computer.png'
-import img_qq from '@/assets/img/qq.png'
-import img_skill from '@/assets/img/skill.png'
+import img_tel from '@/assets/img/img_ry1.png'
+import img_computer from '@/assets/img/img_ry2.png'
+import img_qq from '@/assets/img/img_ry3.png'
+import img_skill from '@/assets/img/img_ry4.png'
 
 const swiperList = [
   {
     img: banner1,
-    title: '您身边的IT专家1',
-    content: '宣传简介您身边的IT专家1宣传简介您身边的IT专家1'
+    title: '中安工业互联网（成都）有限公司',
+    content: '中国数智消防创领者'
   },
   {
     img: banner2,
-    title: '您身边的IT专家2',
-    content: '宣传简介您身边的IT专家2宣传简介您身边的IT专家2'
+    title: '中安工业互联网（成都）有限公司',
+    content: '全国首家标识解析安全应急行业节点运营商'
   },
   {
     img: banner1,
-    title: '您身边的IT专家3',
-    content: '宣传简介您身边的IT专家3宣传简介您身边的IT专家3'
+    title: '中安工业互联网（成都）有限公司',
+    content: '以工业互联  助安全应急'
   },
   {
     img: banner2,
-    title: '您身边的IT专家4',
-    content: '宣传简介您身边的IT专家4宣传简介您身边的IT专家4'
+    title: '国家工业互联网标识解析安全应急行业公共服务平台',
+    content: '数智消防 ｜ 智改数转 ｜ 工业互联网+安全生产'
   }
 ]
 
@@ -221,110 +265,68 @@ const modules = [Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay]
 const customerList = [
   {
     logo: logo_hp,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
+    title: '标识解析',
     content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
+      '标识解析体系是工业互联网架构的重要组成部分，是工业互联网的“中枢神经”。',
+    remark: '标识载体+标识解析'
   },
   {
     logo: logo_kk,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
+    title: '标识解析',
     content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
+      '标识解析体系是工业互联网架构的重要组成部分，是工业互联网的“中枢神经”。',
+    remark: '标识载体+标识解析'
   },
   {
     logo: logo_toyota,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
+    title: '标识解析',
     content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_kk,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_hp,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_toyota,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_kk,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_hp,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_toyota,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_hp,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_kk,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
-  },
-  {
-    logo: logo_hp,
-    title:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。',
-    content:
-      '您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。您可以双击这里或者点击编辑按钮来修改内容。您还可以添加图标，按钮，图片等常用元素。'
+      '标识解析体系是工业互联网架构的重要组成部分，是工业互联网的“中枢神经”。',
+    remark: '标识载体+标识解析'
   }
 ]
 
 const serverList = [
   {
     logo: img_tel,
-    title: '核心优势1',
-    content: '<p>由专业客服提供人工服务</p>负责疑难问题和故障受理'
+    title: '国家工业互联网标识注册服务许可证',
+    content:
+      '2022年9月，获四川省通信管理局颁发的“工业互联网标识注册服务机构许可证”'
   },
   {
     logo: img_computer,
-    title: '核心优势2',
-    content: '<p>利用远程视频工具，提供协助</p>帮助客户进行调试、解决故障'
+    title: '四川省科技型中小企业',
+    content:
+      '2022年8月4日，中安互联经四川省科技厅认证，获批2022年度第九批科技型中小企业'
   },
   {
     logo: img_qq,
-    title: '核心优势3',
-    content: '<p>利用企业QQ提供在线解答</p>帮助企业快速准确解决问题和故障'
+    title: '工信部重点实验室大数据与实体经济融合工作组成员',
+    content:
+      '2022年6月29日，获国家工业信息安全发展研究中心颁发的”2022年-2024年大数据与实体经济融合工作组成员单位'
   },
   {
     logo: img_skill,
-    title: '核心优势4',
-    content: '<p>由技术支持工程师，负责问题解答</p>需求受理及故障受理'
+    title: '2021年示范应用场景',
+    content:
+      '2022年6月，获成都市新经济发展委员会颁发的“2021年度基于物联网等城市智慧消防管理示范场景”'
+  },
+  {
+    logo: img_skill,
+    title: '2021年年度中国水泥行业智造先锋供应商',
+    content:
+      '2022年7月19日，获中国水泥网颁发的“2021年度中国水泥行业智造先锋供应商”'
+  },
+  {
+    logo: img_skill,
+    title: '2022年产业数字经济创新应用案例',
+    content: '2022年11月15日，中安互联案例入围“2022产业数字经济创新案例”'
+  },
+  {
+    logo: img_skill,
+    title: 'CEIE2022“消防技术创新十大品牌”',
+    content:
+      '2023年2月28日，获CEIS2022第四届中国应急安全(消防)产业峰会颁发的“消防技术创新十大品牌”'
   }
 ]
 
@@ -343,7 +345,10 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.my-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
 /* 整体盒子 */
 #HomePage {
   width: 100%;
@@ -399,6 +404,7 @@ onMounted(() => {
 
 #bigData .bigData-title {
   padding-bottom: 10px;
+  font-size: 30px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -419,16 +425,19 @@ onMounted(() => {
   background: url('../assets/img/contact_us_bg.jpg') 0 0 no-repeat;
   background-size: 100% 100%;
   transition: all ease 0.6s;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 
 #contactUs .contactUs-container {
-  padding-top: 50px;
+  // padding-top: 50px;
 }
 
 #contactUs .contactUs-container button {
   width: 300px;
   height: 50px;
-  margin-top: 40px;
+  margin-top: 36px;
 }
 
 #contactUs .contactUs-container .contactUs-contactWay span {
@@ -462,9 +471,9 @@ onMounted(() => {
 }
 
 #customer .customer-title {
-  font-size: 30px;
-  color: rgb(102, 102, 102);
-  margin: 0 0 30px;
+  font-size: 24px;
+  color: #333;
+  margin: 0 0 16px;
 }
 
 #customer .customer-block {
@@ -485,11 +494,22 @@ onMounted(() => {
 
 #customer .customer-content1 {
   padding-bottom: 20px;
+  text-align: center;
+  font-size: 12px;
   border-bottom: 1px solid #0ce9f1;
 }
 
 #customer .customer-content2 {
-  padding-top: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  padding-top: 12px;
+}
+
+#customer .customer-title {
+  width: 100%;
+  text-align: center;
+  padding-top: 34px;
 }
 
 /* 为什么选择我们 */
@@ -511,19 +531,20 @@ onMounted(() => {
 }
 
 #whyChooseUs .server-block {
-  padding: 50px 20px;
+  padding: 28px 24px;
   border: 1px solid #ccc;
   border-bottom: 5px solid #ccc;
+  box-sizing: border-box;
 }
 
 #whyChooseUs .server-block img {
-  width: 48px;
-  height: 48px;
+  width: 148px;
+  height: 148px;
 }
 
 #whyChooseUs .server-block > p {
-  font-size: 20px;
-  margin: 30px 0;
+  font-size: 18px;
+  color: #333;
 }
 
 #whyChooseUs .server-block > div {

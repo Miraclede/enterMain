@@ -19,6 +19,8 @@
   "devDependencies": {
     "@rollup/plugin-inject": "^5.0.2",
     "@vitejs/plugin-vue": "^3.2.0",
+    "sass": "^1.77.8",
+    "sass-loader": "^16.0.1",
     "vite": "^3.2.3",
     "vite-plugin-html": "^3.2.0"
   }

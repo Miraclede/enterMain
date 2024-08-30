@@ -7,18 +7,6 @@
         <div class="server pull-left">
           <span class="glyphicon glyphicon-earphone"></span>{{ phone }}
           <span class="glyphicon glyphicon-envelope"></span>{{ email }}
-          <span class="glyphicon glyphicon-time"></span>7x24小时为您服务
-        </div>
-        <div class="shejiao pull-right">
-          <span class="glyphicon glyphicon-hand-right"></span>赶快联系我们吧！
-          <span class="glyphicon glyphicon-hand-left"></span>
-
-          <a
-            href="https://github.com/neveryu"
-            target="_blank"
-            style="color: #fc5531; font-size: 18px; cursor: pointer"
-            >Github</a
-          >
         </div>
       </div>
     </div>
@@ -26,7 +14,7 @@
     <div class="header-nav container hidden-xs">
       <!-- 导航logo -->
       <div class="header-nav-logo">
-        <img src="@/assets/img/logo_black.png" />
+        <img src="@/assets/img/logo_color.png" />
       </div>
       <!-- 导航内容 -->
       <ul class="header-nav-wrapper">
@@ -45,9 +33,15 @@
             <i class="underline"></i>
           </router-link>
           <dl v-if="item.children.length > 0">
-            <dt v-for="(i, n) in item.children" :key="n">
-              <router-link :to="i.path">{{ i.name }}</router-link>
-            </dt>
+            <template v-for="(i, n) in item.children" :key="n">
+              <dt>
+                <div v-if="i.children" :class="i.children?'middleMenu':''">{{ i.name }}</div>
+                <router-link v-else :to="i.path">{{ i.name }}</router-link>
+              </dt>
+              <dd v-for="(i_i,i_n) in i.children" :key="i_n">
+                <router-link :to="i_i.path">{{ i_i.name }}</router-link>
+              </dd>
+            </template>
           </dl>
         </li>
       </ul>
@@ -111,11 +105,35 @@ const navList = [
   },
   {
     name: '软件产品',
+    path: '',
+    children: [
+      {
+        name: '智能小镇管理系统',
+        path: '/software/smartTown',
+        children:[
+          {
+            name: '智能小镇管理系统',
+            path: '/software/smartTown'
+          },
+          {
+            name: '大数据管理系统',
+            path: '/software/bigData'
+          }
+        ]
+      },
+      {
+        name: '大数据管理系统',
+        path: '/software/bigData'
+      }
+    ]
+  },
+  {
+    name: '软件产品',
     path: '/software',
     children: [
       {
         name: '智能小镇管理系统',
-        path: '/software/smartTown'
+        path: '/software/smartTown',
       },
       {
         name: '大数据管理系统',
@@ -163,7 +181,13 @@ function menuClick() {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+.middleMenu{
+  color: #525252;
+  font-weight: bold;
+}
+
 /* 顶部 */
 #header {
   background: #f4f4f4;
@@ -173,9 +197,9 @@ function menuClick() {
 #header .header-top {
   height: 50px;
   color: #fff;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 50px;
-  background: #474747;
+  background-color: var(--color-primary);
 }
 
 /* 顶部的图标 */
@@ -198,8 +222,7 @@ function menuClick() {
 
 /* 导航栏logo图片 */
 #header .header-nav .header-nav-logo img {
-  width: 95px;
-  height: 45px;
+  width: 182px;
   position: absolute;
   top: 0;
   left: 0;
@@ -299,8 +322,18 @@ function menuClick() {
   border-bottom: 1px solid #ccc;
 }
 
+#header .header-nav .header-nav-wrapper > li > dl > dd{
+  width: 100%;
+  padding: 10px 10px 10px 25px;
+  border-bottom: 1px solid #ccc;
+}
+
 /* 导航栏 每个导航下面的二级导航容器的每个导航 当鼠标滑上时的样式*/
 #header .header-nav .header-nav-wrapper > li > dl > dt > a:hover {
+  text-decoration: none;
+}
+
+#header .header-nav .header-nav-wrapper > li > dl > dd > a:hover {
   text-decoration: none;
 }
 
@@ -314,6 +347,13 @@ function menuClick() {
   background: #ccc;
 }
 
+#header .header-nav .header-nav-wrapper > li > dl > dd:hover {
+  cursor: pointer;
+  background: #ccc;
+}
+
+
+//小屏幕适配
 @media screen and (max-width: 997px) {
   #header .header-nav-m {
     position: relative;

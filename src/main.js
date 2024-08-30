@@ -12,6 +12,8 @@ import './assets/css/reset.min.css'
 import './assets/css/bootstrap.min.css'
 import './assets/js/bootstrap.min.js'
 
+import './style.css'
+
 /* animate.css */
 import 'wow.js/css/libs/animate.css'
 
