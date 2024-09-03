@@ -27,8 +27,9 @@
       </swiper-slide>
     </swiper>
 
-    <!-- 大数据管理系统 -->
+    <!-- 应急行业公共服务平台  -->
     <div id="bigData" class="container-fuild">
+      <div class="commonTitle text-center">平台产品及服务</div>
       <div class="row bigData-container">
         <div
           style="text-align: center; display: flex; justify-content: center"
@@ -45,70 +46,54 @@
         <div class="col-xs-12 col-sm-12 col-md-6">
           <h2 class="bigData-title">
             国家工业互联网标识解析安全应急行业公共服务平台
-            <span
-              style="color: aqua; font-size: 23px"
-              class="glyphicon glyphicon-link"
-            ></span>
-            <!-- <small>/ Big Data Management System</small> -->
           </h2>
-          <p style="margin-bottom: 3rem">
-            贯通数据全生命周期管理，助力企业数据治理，积聚技术及产业资源，推动市场转化和产业孵化。
+          <p style="margin-bottom: 3rem; font-size: 16px">
+            简介：公共服务平台是以服务、工具及技术等形式为安全应急产业生态圈中其他成员提供解决方案的线上综合性平台。通过工业互联网标识解析，链接生产商、供应商、服务商、终端用户，强化监管单位运营能力。推动安全应急行业产品交易、全生命周期管理、质量追溯、区块链存证、产品在线监控、售后服务等业务协同。
           </p>
-          <h2 class="bigData-title">
-            城市安全运营平台
-            <span
-              style="color: aqua; font-size: 23px"
-              class="glyphicon glyphicon-link"
-            ></span>
-            <!-- <small>/ Big Data Management System</small> -->
-          </h2>
-          <p style="margin-bottom: 3rem">
-            特色“工具”赋能企业预警应急，整合行业产业资源，构建“预防-监测-预警-快处”特色城市安全管理体系。
-          </p>
-
-          <a href="javascript:;" class="btn btn-lg btn-block btn-info"
-            >联系我们</a
-          >
+          <p style="font-size: 24px">电脑/手机 全设备支持</p>
         </div>
       </div>
     </div>
 
-    <!-- 整体解决方案服务商 -->
-    <div id="contactUs" class="container-fuild text-center">
-      <div class="container contactUs-container wow slideInUp">
-        <h1>{{ company }}</h1>
-        <div style="font-size: 20px; margin: 20px 0">
-          “工业互联网+安全生产”整体解决方案服务商
+    <!-- 城市安全运营平台  -->
+    <div id="bigData" style="padding-top: 0" class="container-fuild">
+      <div class="row bigData-container">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          <h2 class="bigData-title">城市安全运营平台</h2>
+          <p style="margin-bottom: 3rem; font-size: 16px">
+            简介：城市安全运营平台为集智慧应急、资源整合、体系构建与产业促进于一体的综合管理平台，整合区域安全应急产业资源，促进安全应急产业生态圈的形成，构建完整的安全应急产业链，为城市安全运营提供可复制、可推广的长效运营模式，并实现集成产品的输出。通过迭代升级与深化开发，实现与省市平台及“一网统管”的无缝融合，同时与区级部门、街道系统紧密衔接，高效运用安全管理工具，全方位提升城市安全运营能力。
+          </p>
+          <p style="font-size: 24px">电脑/手机 全设备支持</p>
         </div>
-        <button
-          class="btn btn-default btn-sm"
-          onmouseleave="this.style.borderColor='#ffffff'; this.style.backgroundColor='#ffffff'; this.style.color='#3f3f3f';"
-          onmouseenter="this.style.backgroundColor='transparent'; this.style.borderColor='#ffffff'; this.style.color='#ffffff';"
+        <div
+          style="text-align: center; display: flex; justify-content: center"
+          class="col-xs-12 col-sm-12 col-md-6 wow zoomIn"
         >
-          联系我们
-        </button>
-        <!-- <div class="contactUs-contactWay">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div> -->
+          <div style="max-width: 600px">
+            <img
+              class="img-responsive"
+              src="@/assets/img/img2.png"
+              alt="大数据管理系统"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- 基于工业互联网的全流程产品及服务体系 -->
+    <!-- todo样式突变，移动端适配,跳转逻辑 -->
+    <!-- 标准工具软件系统 -->
     <div id="customer" class="container-fuild">
       <div class="container customer-container">
-        <p class="customer-title text-center">
-          基于工业互联网的全流程产品及服务体系
-        </p>
+        <p class="commonTitle text-center">标准工具软件系统</p>
+        <!-- autoplay -->
         <swiper
+          style="background-color: white"
           class="swiper-container customer-swiper hidden-xs"
           :modules="modules"
           :slides-per-view="1"
           :space-between="0"
           navigation
           loop
-          autoplay
           :pagination="{
             clickable: true
           }"
@@ -150,6 +135,34 @@
               <small>{{ item.title }}</small>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 硬件产品及服务  -->
+    <div id="bigData" style="padding-bottom: 0" class="container-fuild">
+      <div class="commonTitle text-center">硬件产品及服务</div>
+      <div class="row bigData-container">
+        <div
+          style="text-align: center; display: flex; justify-content: center"
+          class="col-xs-12 col-sm-12 col-md-6 wow zoomIn"
+        >
+          <div style="max-width: 600px">
+            <img
+              class="img-responsive"
+              src="@/assets/img/img1.png"
+              alt="大数据管理系统"
+            />
+          </div>
+        </div>
+        <div
+          style="display: flex; flex-direction: column; justify-content: center;min-height: 350px;"
+          class="col-xs-12 col-sm-12 col-md-6"
+        >
+          <h2 class="bigData-title">智慧消防一体机</h2>
+          <p style="margin-bottom: 3rem; font-size: 16px">
+            贯通数据全生命周期管理，助力企业数据治理，积聚技术及产业资源，推动市场转化和产业孵化。贯通数据全生命周期管理，助力企业数据治理，积聚技术及产业资源，推动市场转化和产业孵化。贯通数据全生命周期管理。
+          </p>
         </div>
       </div>
     </div>
@@ -214,7 +227,7 @@
 
 <script setup name="HomePage">
 import WOW from 'wow.js'
-import { getCurrentInstance, onMounted,ref } from 'vue'
+import { getCurrentInstance, onMounted, ref } from 'vue'
 import { Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay } from 'swiper'
 const company = import.meta.env.VITE_APP_COMPANYNAME
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -265,24 +278,39 @@ const modules = [Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay]
 const customerList = [
   {
     logo: logo_hp,
-    title: '标识解析',
-    content:
-      '标识解析体系是工业互联网架构的重要组成部分，是工业互联网的“中枢神经”。',
-    remark: '标识载体+标识解析'
+    title: '消防物联监测预警系统',
+    content: '全面接入、在线监测、消安联动、实时预警。',
+    remark: '数智消防'
   },
   {
     logo: logo_kk,
-    title: '标识解析',
-    content:
-      '标识解析体系是工业互联网架构的重要组成部分，是工业互联网的“中枢神经”。',
-    remark: '标识载体+标识解析'
+    title: '消防安全智能巡检系统',
+    content: '智能化巡检，数字化存证。',
+    remark: '数智消防'
   },
   {
     logo: logo_toyota,
-    title: '标识解析',
-    content:
-      '标识解析体系是工业互联网架构的重要组成部分，是工业互联网的“中枢神经”。',
-    remark: '标识载体+标识解析'
+    title: '智慧消防隐患排查治理系统',
+    content: '隐患闭环管理、助力监督预警',
+    remark: '数智消防'
+  },
+  {
+    logo: logo_hp,
+    title: '安全风险与隐患排查治理管理系统',
+    content: '风险分级动态管控、隐患排查治理闭环管理、机制运行成效监督预警。',
+    remark: '工业＋安全生产'
+  },
+  {
+    logo: logo_kk,
+    title: '安全生产信息管理系统',
+    content: '全线信息数字化管理，一键掌控。',
+    remark: '工业＋安全生产'
+  },
+  {
+    logo: logo_toyota,
+    title: '生产设备管理系统',
+    content: '状态监测、故障预警、全生命周期精细化管理。',
+    remark: '智改数转'
   }
 ]
 
@@ -404,7 +432,7 @@ onMounted(() => {
 
 #bigData .bigData-title {
   padding-bottom: 10px;
-  font-size: 30px;
+  font-size: 36px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -504,6 +532,7 @@ onMounted(() => {
   text-align: center;
   font-size: 12px;
   padding-top: 12px;
+  color: #007aff;
 }
 
 #customer .customer-title {
@@ -522,7 +551,7 @@ onMounted(() => {
 }
 
 #whyChooseUs .whyChooseUs-title p:nth-of-type(1) {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 500;
 }
 

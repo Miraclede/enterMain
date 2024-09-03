@@ -35,11 +35,16 @@
           <dl v-if="item.children.length > 0">
             <template v-for="(i, n) in item.children" :key="n">
               <dt>
-                <div v-if="i.children" :class="i.children?'middleMenu':''">{{ i.name }}</div>
+                <div v-if="i.children" :class="i.children ? 'middleMenu' : ''">
+                  {{ i.name }}
+                </div>
                 <router-link v-else :to="i.path">{{ i.name }}</router-link>
               </dt>
-              <dd v-for="(i_i,i_n) in i.children" :key="i_n">
-                <router-link :to="i_i.path">{{ i_i.name }}</router-link>
+              <dd v-for="(i_i, i_n) in i.children" :key="i_n">
+                <router-link
+                  :to="{ path: i_i.path, query: { pageType: i_i.type } }"
+                  >{{ i_i.name }}</router-link
+                >
               </dd>
             </template>
           </dl>
@@ -104,46 +109,82 @@ const navList = [
     children: []
   },
   {
-    name: '软件产品',
+    name: '产品及服务',
     path: '',
     children: [
       {
-        name: '智能小镇管理系统',
-        path: '/software/smartTown',
-        children:[
+        name: '平台产品及服务',
+        path: '',
+        children: [
           {
-            name: '智能小镇管理系统',
-            path: '/software/smartTown'
+            name: '国家工业互联网标识解析安全应急行业公共服务平台',
+            path: '/basicPage',
+            type: 'bsjx'
           },
           {
-            name: '大数据管理系统',
-            path: '/software/bigData'
+            name: '城市安全运营平台',
+            path: '/basicPage',
+            type: 'csaq'
           }
         ]
       },
       {
-        name: '大数据管理系统',
-        path: '/software/bigData'
-      }
-    ]
-  },
-  {
-    name: '软件产品',
-    path: '/software',
-    children: [
-      {
-        name: '智能小镇管理系统',
-        path: '/software/smartTown',
+        name: '标准工具软件系统',
+        path: '',
+        children: [
+          {
+            name: '消防物联监测预警系统',
+            path: '/basicPage',
+            type: 'xfwl'
+          },
+          {
+            name: '消防安全智能巡检系统',
+            path: '/basicPage',
+            type: 'xfaq'
+          },
+          {
+            name: '智慧消防隐患排查治理系统',
+            path: '/basicPage',
+            type: 'zhxf'
+          },
+          {
+            name: '安全风险与隐患排查治理管理系统',
+            path: '/basicPage',
+            type: 'aqfx'
+          },
+          {
+            name: '安全生产信息管理系统',
+            path: '/basicPage',
+            type: 'aqsc'
+          },
+          {
+            name: '生产设备管理系统',
+            path: '/basicPage',
+            type: 'scsb'
+          }
+        ]
       },
       {
-        name: '大数据管理系统',
-        path: '/software/bigData'
+        name: '硬件产品及服务',
+        path: '',
+        children: [
+          {
+            name: '智慧消防一体机',
+            path: '/wholeKnowleadge',
+            type: 'ytj'
+          }
+        ]
       }
     ]
   },
   {
-    name: '相关服务',
+    name: '行业解决方案',
     path: '/service',
+    children: []
+  },
+  {
+    name: '案例聚焦',
+    path: '/demoView',
     children: []
   },
   {
@@ -182,8 +223,7 @@ function menuClick() {
 </script>
 
 <style lang="scss" scoped>
-
-.middleMenu{
+.middleMenu {
   color: #525252;
   font-weight: bold;
 }
@@ -307,7 +347,7 @@ function menuClick() {
 #header .header-nav .header-nav-wrapper > li > dl {
   display: none;
   position: absolute;
-  width: 168px;
+  width: 230px;
   top: 80%;
   left: 0;
   z-index: 999999;
@@ -322,7 +362,7 @@ function menuClick() {
   border-bottom: 1px solid #ccc;
 }
 
-#header .header-nav .header-nav-wrapper > li > dl > dd{
+#header .header-nav .header-nav-wrapper > li > dl > dd {
   width: 100%;
   padding: 10px 10px 10px 25px;
   border-bottom: 1px solid #ccc;
@@ -351,7 +391,6 @@ function menuClick() {
   cursor: pointer;
   background: #ccc;
 }
-
 
 //小屏幕适配
 @media screen and (max-width: 997px) {

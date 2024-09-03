@@ -17,3 +17,10 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.commonTitle {
+  font-size: 30px;
+  color: #666;
+  font-weight: 500;
+  padding-bottom: 50px;
+}

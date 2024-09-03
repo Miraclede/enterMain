@@ -1,15 +1,58 @@
 <template>
   <div id="Service">
     <div class="container text-center">
-      <h1>行业解决方案</h1>
-      <p style="color: #b2b2b2">Service capability</p>
+      <h1>案例聚焦</h1>
+      <p style="color: #b2b2b2">Case Focus</p>
     </div>
     <div class="container">
-      <div class="Service-container row text-center" style="display: flex;gap: 10px;justify-content: center;">
-        <!-- col-xs-12 col-sm-6 col-md-3 -->
+      <div class="commonTitle text-center" style="padding-bottom: 0;margin-top: 20px;">城市公共安全</div>
+      <div class="Service-container row text-center">
         <div
-          class="Service-item  wow slideInUp"
-          style="width: 20%;"
+          class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp"
+          v-for="(item, index) in serviceList"
+          :key="index"
+          @click="ServiceClick(item.type)"
+        >
+          <div class="Service-item-wrapper" >
+            <div class="Service-item-top">
+              <h4>{{ item.title }}</h4>
+              <i></i>
+              <p>{{ item.eng_title }}</p>
+            </div>
+            <div class="Service-item-img">
+              <img :src="item.img" alt="服务" />
+            </div>
+            <div class="Service-item-border"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="commonTitle text-center" style="padding-bottom: 0;margin-top: 20px;">行业公共安全</div>
+      <div class="Service-container row text-center">
+        <div
+          class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp"
+          v-for="(item, index) in serviceList"
+          :key="index"
+          @click="ServiceClick(item.type)"
+        >
+          <div class="Service-item-wrapper" >
+            <div class="Service-item-top">
+              <h4>{{ item.title }}</h4>
+              <i></i>
+              <p>{{ item.eng_title }}</p>
+            </div>
+            <div class="Service-item-img">
+              <img :src="item.img" alt="服务" />
+            </div>
+            <div class="Service-item-border"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="commonTitle text-center" style="padding-bottom: 0;margin-top: 20px;">能源安全</div>
+      <div class="Service-container row text-center">
+        <div
+          class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp"
           v-for="(item, index) in serviceList"
           :key="index"
           @click="ServiceClick(item.type)"
@@ -43,35 +86,35 @@ const serviceList = [
   {
     id: 'section-1',
     title: '大型综合体智慧消防解决方案',
-    eng_title: 'Solution',
+    eng_title: 'case',
     img: service1,
     type:'dxzh'
   },
   {
     id: 'section-2',
     title: '医院智慧消防解决方案',
-    eng_title: 'Solution',
+    eng_title: 'case',
     img: service2,
     type:'yyzh'
   },
   {
     id: 'section-3',
     title: '电力行业智慧消防解决方案',
-    eng_title: 'Solution',
+    eng_title: 'case',
     img: service3,
     type:'dlhy'
   },
   {
     id: 'section-4',
     title: '化工园区安全生产智慧服务方案',
-    eng_title: 'Solution',
+    eng_title: 'case',
     img: service4,
     type:'hgyq'
   },
   {
     id: 'section-5',
     title: '餐厨垃圾智能化解决方案',
-    eng_title: 'Solution',
+    eng_title: 'case',
     img: service5,
     type:'cclj'
   },

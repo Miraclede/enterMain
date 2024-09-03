@@ -28,6 +28,30 @@ const routes = [
         }
       },
       {
+        path: '/basicPage',
+        name: 'basicPage',
+        component: () => import('@/view/BasicPage.vue'),
+        meta: {
+          title: '基础功能页'
+        }
+      },
+      {
+        path: '/demoView',
+        name: 'demoView',
+        component: () => import('@/view/DemoView.vue'),
+        meta: {
+          title: '案例聚焦'
+        }
+      },
+      {
+        path: '/wholeKnowleadge',
+        name: 'wholeKnowleadge',
+        component: () => import('@/view/WholeKnowleadge.vue'),
+        meta: {
+          title: '一体机'
+        }
+      },
+      {
         path: '/software',
         name: 'software',
         component: () => import('@/view/software.vue'),

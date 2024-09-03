@@ -91,7 +91,7 @@ const serviceContentList = [
 function toSection(_id) {
   id.value = _id
   let top = document.getElementById(id.value).offsetTop
-  $(window).scrollTop(top + 300)
+  $(window).scrollTop(top + 100)
   $('#myNav').affix({
     offset: {
       top: 300
