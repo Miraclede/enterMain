@@ -4,7 +4,10 @@
     <!-- 头部顶部 -->
     <div class="header-top container-fuild hidden-xs">
       <div class="container">
-        <div class="server pull-left">
+        <div
+          class="server pull-left"
+          style="display: flex; align-items: center"
+        >
           <span class="glyphicon glyphicon-earphone"></span>{{ phone }}
           <span class="glyphicon glyphicon-envelope"></span>{{ email }}
         </div>
@@ -56,7 +59,7 @@
       <div class="header-nav-m-logo">
         <img
           class="center-block"
-          src="@/assets/img/logo_black.png"
+          src="@/assets/img/logo_color.png"
           alt="logo"
         />
       </div>
@@ -72,8 +75,12 @@
           <span :class="menuClass"></span>
         </div>
         <!-- 导航内容 -->
-        <ul id="menu" class="header-nav-m-wrapper collapse">
-          <li
+        <ul
+          id="menu"
+          class="header-nav-m-wrapper collapse"
+          style="overflow-y: auto"
+        >
+          <template
             v-for="(item, index) in navList"
             :key="index"
             :class="index == navIndex ? 'active' : ''"
@@ -81,11 +88,49 @@
             data-toggle="collapse"
             data-target="#menu"
           >
-            <router-link :to="item.path">
-              {{ item.name }}
-              <i class="underline"></i>
-            </router-link>
-          </li>
+            <ul v-if="item.children.length > 0">
+              <template
+                v-for="(item_1, index_1) in item.children"
+                :key="index_1 + 10"
+                @click="navClick(index_1, item_1.name)"
+                data-toggle="collapse"
+                data-target="#menu"
+              >
+                <ul v-if="item_1.children.length > 0">
+                  <template
+                    v-for="(item_2, index_2) in item_1.children"
+                    :key="index_2 + 20"
+                    @click="navClick(index_2, item_2.name)"
+                    data-toggle="collapse"
+                    data-target="#menu"
+                  >
+                    <li>
+                      <router-link
+                        :to="{
+                          path: item_2.path,
+                          query: { pageType: item_2.type }
+                        }"
+                      >
+                        {{ item_2.name }}
+                      </router-link>
+                    </li>
+                  </template>
+                </ul>
+                <li>
+                  <router-link :to="item_1.path">
+                    {{ item_1.name }}
+                    <i class="underline"></i>
+                  </router-link>
+                </li>
+              </template>
+            </ul>
+            <li v-else>
+              <router-link :to="item.path">
+                {{ item.name }}
+                <i class="underline"></i>
+              </router-link>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
@@ -93,7 +138,8 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
+import { useRouter } from 'vue-router'
 const phone = import.meta.env.VITE_APP_PHONE
 const email = import.meta.env.VITE_APP_EMAIL
 const navIndex = ref('')
@@ -102,10 +148,11 @@ navIndex.value = sessionStorage.getItem('navIndex')
   : 0
 const menuName = ref('首页')
 const menuClass = ref('glyphicon glyphicon-menu-down')
+const router = useRouter()
 const navList = [
   {
     name: '首页',
-    path: '/',
+    path: '/home',
     children: []
   },
   {
@@ -170,7 +217,7 @@ const navList = [
         children: [
           {
             name: '智慧消防一体机',
-            path: '/wholeKnowleadge',
+            path: '/serviceDetail',
             type: 'ytj'
           }
         ]
@@ -188,7 +235,7 @@ const navList = [
     children: []
   },
   {
-    name: '新闻动态',
+    name: '公司动态',
     path: '/newsinformation',
     children: []
   },
@@ -198,20 +245,45 @@ const navList = [
     children: []
   },
   {
-    name: '工作机会',
-    path: '/jobchance',
-    children: []
-  },
-  {
     name: '联系我们',
     path: '/contactus',
     children: []
   }
 ]
+watch(
+  () => router.currentRoute.value,
+  (newValue, oldValue) => {
+    console.log('header:', newValue, oldValue)
+    if (newValue.path == '/basicPage') {
+      navIndex.value = 1
+      menuName.value = '产品及服务'
+    } else if (newValue.path == '/serviceDetail') {
+      if (newValue.query.pageType == 'ytj') {
+        navIndex.value = 1
+        menuName.value = '产品及服务'
+      } else {
+        navIndex.value = 2
+        menuName.value = '行业解决方案'
+      }
+    }else if(newValue.path == '/demoViewDetail'){
+        navIndex.value = 3
+        menuName.value = '案例聚焦'
+    } 
+    else {
+      let index = navList.findIndex((item) => item.path == newValue.path)
+      console.log('headerIndex', index)
+
+      navIndex.value = index
+      menuName.value = navList[index].name
+    }
+  }
+)
 function navClick(index, name) {
-  navIndex.value = index
-  sessionStorage.setItem('navIndex', index)
-  menuName.value = name
+  if (navList[index].path) {
+    navIndex.value = index
+    sessionStorage.setItem('navIndex', index)
+    menuName.value = name
+  }
 }
 function menuClick() {
   if (menuClass.value == 'glyphicon glyphicon-menu-down') {

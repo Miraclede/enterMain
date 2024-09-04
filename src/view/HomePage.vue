@@ -44,13 +44,20 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
-          <h2 class="bigData-title">
+          <h2 class="bigData-title" @click="basicClick('bsjx')">
             国家工业互联网标识解析安全应急行业公共服务平台
           </h2>
           <p style="margin-bottom: 3rem; font-size: 16px">
             简介：公共服务平台是以服务、工具及技术等形式为安全应急产业生态圈中其他成员提供解决方案的线上综合性平台。通过工业互联网标识解析，链接生产商、供应商、服务商、终端用户，强化监管单位运营能力。推动安全应急行业产品交易、全生命周期管理、质量追溯、区块链存证、产品在线监控、售后服务等业务协同。
           </p>
-          <p style="font-size: 24px">电脑/手机 全设备支持</p>
+          <p class="pull-left" style="font-size: 24px">电脑/手机 全设备支持</p>
+          <p
+            class="pull-right"
+            @click="basicClick('bsjx')"
+            style="font-size: 15px; color: #1e73be"
+          >
+            了解更多<span class="glyphicon glyphicon-menu-right"></span>
+          </p>
         </div>
       </div>
     </div>
@@ -59,11 +66,20 @@
     <div id="bigData" style="padding-top: 0" class="container-fuild">
       <div class="row bigData-container">
         <div class="col-xs-12 col-sm-12 col-md-6">
-          <h2 class="bigData-title">城市安全运营平台</h2>
+          <h2 @click="basicClick('csaq')" class="bigData-title">
+            城市安全运营平台
+          </h2>
           <p style="margin-bottom: 3rem; font-size: 16px">
             简介：城市安全运营平台为集智慧应急、资源整合、体系构建与产业促进于一体的综合管理平台，整合区域安全应急产业资源，促进安全应急产业生态圈的形成，构建完整的安全应急产业链，为城市安全运营提供可复制、可推广的长效运营模式，并实现集成产品的输出。通过迭代升级与深化开发，实现与省市平台及“一网统管”的无缝融合，同时与区级部门、街道系统紧密衔接，高效运用安全管理工具，全方位提升城市安全运营能力。
           </p>
-          <p style="font-size: 24px">电脑/手机 全设备支持</p>
+          <p class="pull-left" style="font-size: 24px">电脑/手机 全设备支持</p>
+          <p
+            @click="basicClick('csaq')"
+            class="pull-right"
+            style="font-size: 15px; color: #1e73be"
+          >
+            了解更多<span class="glyphicon glyphicon-menu-right"></span>
+          </p>
         </div>
         <div
           style="text-align: center; display: flex; justify-content: center"
@@ -80,12 +96,10 @@
       </div>
     </div>
 
-    <!-- todo样式突变，移动端适配,跳转逻辑 -->
     <!-- 标准工具软件系统 -->
     <div id="customer" class="container-fuild">
       <div class="container customer-container">
         <p class="commonTitle text-center">标准工具软件系统</p>
-        <!-- autoplay -->
         <swiper
           style="background-color: white"
           class="swiper-container customer-swiper hidden-xs"
@@ -94,12 +108,17 @@
           :space-between="0"
           navigation
           loop
+          :autoplay="{
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }"
           :pagination="{
             clickable: true
           }"
         >
           <swiper-slide
             class="swiper-slide customer-block"
+            style="padding: 30px 80px;"
             v-for="(item, index) in customerList"
             :key="index"
           >
@@ -110,6 +129,13 @@
 
             <div class="customer-content1">
               <small>{{ item.content }}</small>
+              <p
+                @click="basicClick(item.type)"
+                class="pull-right"
+                style="font-size: 15px; color: #1e73be"
+              >
+                了解更多<span class="glyphicon glyphicon-menu-right"></span>
+              </p>
             </div>
             <div class="customer-content2">{{ item.remark }}</div>
           </swiper-slide>
@@ -150,18 +176,29 @@
           <div style="max-width: 600px">
             <img
               class="img-responsive"
-              src="@/assets/img/img1.png"
+              src="@/assets/img/ytj.png"
               alt="大数据管理系统"
             />
           </div>
         </div>
         <div
-          style="display: flex; flex-direction: column; justify-content: center;min-height: 350px;"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 350px;
+          "
           class="col-xs-12 col-sm-12 col-md-6"
         >
-          <h2 class="bigData-title">智慧消防一体机</h2>
+          <h2 @click="serviceClick('ytj')" class="bigData-title">智慧消防一体机</h2>
           <p style="margin-bottom: 3rem; font-size: 16px">
-            贯通数据全生命周期管理，助力企业数据治理，积聚技术及产业资源，推动市场转化和产业孵化。贯通数据全生命周期管理，助力企业数据治理，积聚技术及产业资源，推动市场转化和产业孵化。贯通数据全生命周期管理。
+            智慧消防一体机专为有消安一体化监管需求的场所设计，通过物联网技术，低成本快速实现远程监控与日常监管，提升消防管理效率与安全。集大数据、云计算于一体，实现水压、电气火灾等多维度监测与报警，界面直观展示隐患。兼容各品牌传感器，灵活配置，覆盖全消防设备监测。作为数字孪生平台，内置可视化大屏，支持定制数据展示。该一体机是我司与消防专家共创的城市级消防全生态解决方案，助力消防智能化升级。
+          </p>
+          <p
+            @click="serviceClick('ytj')"
+            style="font-size: 15px; color: #1e73be"
+          >
+            了解更多<span class="glyphicon glyphicon-menu-right"></span>
           </p>
         </div>
       </div>
@@ -227,6 +264,7 @@
 
 <script setup name="HomePage">
 import WOW from 'wow.js'
+import { useRouter } from 'vue-router'
 import { getCurrentInstance, onMounted, ref } from 'vue'
 import { Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay } from 'swiper'
 const company = import.meta.env.VITE_APP_COMPANYNAME
@@ -244,11 +282,22 @@ import banner2 from '@/assets/img/banner2.jpg'
 import logo_hp from '@/assets/img/logo_hp.png'
 import logo_kk from '@/assets/img/logo_kk.png'
 import logo_toyota from '@/assets/img/logo_toyota.png'
+import tool1 from '@/assets/img/tool1.png'
+import tool2 from '@/assets/img/tool2.png'
+import tool3 from '@/assets/img/tool3.png'
+import tool4 from '@/assets/img/tool4.png'
+import tool5 from '@/assets/img/tool5.png'
+import tool6 from '@/assets/img/tool6.png'
 
 import img_tel from '@/assets/img/img_ry1.png'
 import img_computer from '@/assets/img/img_ry2.png'
 import img_qq from '@/assets/img/img_ry3.png'
 import img_skill from '@/assets/img/img_ry4.png'
+import img_skill5 from '@/assets/img/img_ry5.png'
+import img_skill6 from '@/assets/img/img_ry6.png'
+import img_skill7 from '@/assets/img/img_ry7.png'
+
+const router = useRouter()
 
 const swiperList = [
   {
@@ -277,40 +326,46 @@ const modules = [Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay]
 
 const customerList = [
   {
-    logo: logo_hp,
+    logo: tool1,
     title: '消防物联监测预警系统',
     content: '全面接入、在线监测、消安联动、实时预警。',
-    remark: '数智消防'
+    remark: '数智消防',
+    type: 'xfwl'
   },
   {
-    logo: logo_kk,
+    logo: tool2,
     title: '消防安全智能巡检系统',
     content: '智能化巡检，数字化存证。',
-    remark: '数智消防'
+    remark: '数智消防',
+    type: 'xfaq'
   },
   {
-    logo: logo_toyota,
+    logo: tool3,
     title: '智慧消防隐患排查治理系统',
     content: '隐患闭环管理、助力监督预警',
-    remark: '数智消防'
+    remark: '数智消防',
+    type: 'zhxf'
   },
   {
-    logo: logo_hp,
+    logo: tool4,
     title: '安全风险与隐患排查治理管理系统',
     content: '风险分级动态管控、隐患排查治理闭环管理、机制运行成效监督预警。',
-    remark: '工业＋安全生产'
+    remark: '工业＋安全生产',
+    type: 'aqfx'
   },
   {
-    logo: logo_kk,
+    logo: tool5,
     title: '安全生产信息管理系统',
     content: '全线信息数字化管理，一键掌控。',
-    remark: '工业＋安全生产'
+    remark: '工业＋安全生产',
+    type: 'aqsc'
   },
   {
-    logo: logo_toyota,
+    logo: tool6,
     title: '生产设备管理系统',
     content: '状态监测、故障预警、全生命周期精细化管理。',
-    remark: '智改数转'
+    remark: '智改数转',
+    type: 'scsb'
   }
 ]
 
@@ -340,23 +395,37 @@ const serverList = [
       '2022年6月，获成都市新经济发展委员会颁发的“2021年度基于物联网等城市智慧消防管理示范场景”'
   },
   {
-    logo: img_skill,
+    logo: img_skill5,
     title: '2021年年度中国水泥行业智造先锋供应商',
     content:
       '2022年7月19日，获中国水泥网颁发的“2021年度中国水泥行业智造先锋供应商”'
   },
   {
-    logo: img_skill,
+    logo: img_skill6,
     title: '2022年产业数字经济创新应用案例',
     content: '2022年11月15日，中安互联案例入围“2022产业数字经济创新案例”'
   },
   {
-    logo: img_skill,
+    logo: img_skill7,
     title: 'CEIE2022“消防技术创新十大品牌”',
     content:
       '2023年2月28日，获CEIS2022第四届中国应急安全(消防)产业峰会颁发的“消防技术创新十大品牌”'
   }
 ]
+
+function basicClick(type) {
+  router.push({
+    name: 'basicPage',
+    query: { pageType: type }
+  })
+}
+
+function serviceClick(type) {
+  router.push({
+    name: 'serviceDetail',
+    query: { pageType: type }
+  })
+}
 
 // const { proxy } = getCurrentInstance() //获取上下文实例，ctx=vue2的this
 onMounted(() => {

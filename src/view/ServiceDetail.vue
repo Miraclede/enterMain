@@ -1,191 +1,254 @@
+<!-- 锚点跳转 -->
 <template>
-  <div id="ServiceDetail">
-    <div class="banner container-fuild text-center">相关服务</div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-3" id="myScrollspy">
-          <ul class="nav nav-tabs nav-stacked center-block" id="myNav">
-            <p>特色服务</p>
-            <li
-              :class="item.id == id ? 'active' : ''"
-              v-for="(item, index) in serviceNavList"
-              :key="index"
-            >
-              <a href="javascript:;" @click.stop="toSection(item.id)">{{
-                item.title
-              }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-9 content wow zoomIn">
-          <div
-            class="content-block"
-            v-for="(item, index) in serviceContentList"
+  <div class="serviceDetail">
+    <div class="container" v-if="isYtj">
+      <img style="width: 100%" :src="pageData.head.img" />
+    </div>
+    <div
+      :style="{
+        backgroundImage: `url(${pageData ? pageData.head.img : bg_img})`,
+        backgroundSize: 'cover',
+        'background-repeat': 'no-repeat',
+        height: '350px'
+      }"
+      v-else
+    >
+      <div class="container" style="padding-top: 38px;">
+        <button class="btn" @click="goBack" style="background-color: #0052D9;color: white;">返回</button>
+        <div style="margin-top: 72px;font-size: 42px;color: rgba(0, 0, 0, 0.9);max-width: 294px;color:white">{{ pageData ? pageData.head.title : '-' }}</div>
+      </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <div style="padding: 14px 30%">
+      <ul class="nav nav-justified" id="myNav">
+        <template v-if="pageData">
+          <li
+            :class="item.id == id ? 'active' : ''"
+            v-for="(item, index) in pageData.serviceNavList"
             :key="index"
           >
-            <h2 :id="item.id">
-              {{ item.title }}
-              <small>/ {{ item.eng_title }}</small>
-            </h2>
-            <div v-html="item.content"></div>
-          </div>
-        </div>
+            <a href="javascript:;" @click.stop="toSection(item.id)">{{
+              item.title
+            }}</a>
+          </li>
+        </template>
+      </ul>
+    </div>
+
+    <!-- 图片 -->
+    <div v-if="pageData" class="container">
+
+      <div v-for="(i, i_n) in pageData.content" :key="i_n">
+        <img :id="i.id" style="width: 100%" :src="i.picUrl" />
       </div>
     </div>
   </div>
 </template>
+<script setup>
+import { useRouter } from 'vue-router'
+import { ref, onMounted, watch } from 'vue'
+import ytj_0 from '@/assets/img/ytj_0.png'
+import ytj_1 from '@/assets/img/ytj_1.png'
+import ytj_2 from '@/assets/img/ytj_2.png'
+import ytj_3 from '@/assets/img/ytj_3.png'
+import ytj_4 from '@/assets/img/ytj_4.png'
+import ytj_5 from '@/assets/img/ytj_5.png'
+import dxzh_1 from '@/assets/img/dxzh_1.png'
+import dxzh_2 from '@/assets/img/dxzh_2.png'
+import dxzh_3 from '@/assets/img/dxzh_3.png'
+import yyzh_1 from '@/assets/img/yyzh_1.png'
+import yyzh_2 from '@/assets/img/yyzh_2.png'
+import yyzh_3 from '@/assets/img/yyzh_3.png'
+import bg_img from '@/assets/img/contact_us_bg.jpg'
 
-<script setup name="serviceDetail">
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import WOW from 'wow.js'
+const router = useRouter()
+const pageType = ref('')
+const pageData = ref()
+const isYtj = ref(false)
+
 const id = ref('section-1')
-const serviceNavList = [
-  {
-    id: 'section-1',
-    title: '软件定制开发'
-  },
-  {
-    id: 'section-2',
-    title: 'IT外包服务'
-  },
-  {
-    id: 'section-3',
-    title: '网上商城建设'
-  },
-  {
-    id: 'section-4',
-    title: 'iOS应用定制开发'
-  }
-]
-const serviceContentList = [
-  {
-    id: 'section-1',
-    title: '软件定制开发',
-    eng_title: 'Customize App',
-    content:
-      '<h3>这是标题1</h3><p>这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。</p><h3>这是标题2</h3><p>这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。</p>'
-  },
-  {
-    id: 'section-2',
-    title: 'IT外包服务',
-    eng_title: 'Outsourcing',
-    content:
-      '<h3>这是标题1</h3><p>这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。</p><h3>这是标题2</h3><p>这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。</p>'
-  },
-  {
-    id: 'section-3',
-    title: '网上商城建设',
-    eng_title: 'eCommerce Site',
-    content:
-      '<h3>这是标题1</h3><p>这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。</p><h3>这是标题2</h3><p>这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。</p>'
-  },
-  {
-    id: 'section-4',
-    title: 'iOS应用定制开发',
-    eng_title: 'iOS App Dev',
-    content:
-      '<h3>这是标题1</h3><p>这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。</p><h3>这是标题2</h3><p>这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。这里是内容，请根据实际需要修改。</p>'
-  }
-]
+
+const goBack = ()=>{
+  router.go(-1)
+}
 function toSection(_id) {
   id.value = _id
   let top = document.getElementById(id.value).offsetTop
-  $(window).scrollTop(top + 100)
-  $('#myNav').affix({
-    offset: {
-      top: 300
-    }
-  })
+  $(window).scrollTop(top - 222)
 }
-const route = useRoute()
-const props = defineProps({
-  id: {
-    type: String,
-    required: true
-    // default: 'section-1222'
-  }
-})
-onMounted(() => {
-  console.log('route：', route, route.params, route.query)
-  console.log('history.state：', history.state)
-  id.value = history.state.id
-  console.log(id.value, 'pp')
-  let top = document.getElementById(id.value).offsetTop
-  $(window).scrollTop(top + 300)
-  $('#myNav').affix({
-    offset: {
-      top: 300
-    }
-  })
-  var wow = new WOW()
-  wow.init()
-})
-</script>
 
-<style scoped>
-.banner {
-  color: #fff;
-  font-size: 30px;
-  height: 150px;
-  line-height: 150px;
-  background-image: url('../assets/img/banner_2.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: scroll;
-  background-position: center center;
-}
-ul.nav-tabs {
-  width: 200px;
-  margin-top: 40px;
-  border-radius: 4px;
-  background: #fff;
-  z-index: 99999;
-  border: 1px solid #474747;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-}
-ul.nav-tabs li {
-  text-align: center;
-  margin: 0;
-  border-top: 1px solid #474747;
-}
-ul.nav-tabs p {
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  background: #474747;
-  margin: 0;
-  padding: 10px 0;
-}
-ul.nav-tabs li:first-child {
-  border-top: none;
-}
-ul.nav-tabs li a {
-  margin: 0;
-  padding: 8px 16px;
-  border-radius: 0;
-}
-ul.nav-tabs li.active a,
-ul.nav-tabs li.active a:hover {
-  color: #fff;
-  background: #474747;
-  border: 1px solid #474747;
-}
-ul.nav-tabs li:first-child a {
-  border-radius: 4px 4px 0 0;
-}
-ul.nav-tabs li:last-child a {
-  border-radius: 0 0 4px 4px;
-}
-ul.nav-tabs.affix {
-  top: 30px;
-}
-.content-block {
-  margin: 50px 0;
-}
-.content-block > h2 {
-  padding: 20px 0;
-  border-bottom: 1px solid #ccc;
+//todo 监听滑动到页面顶部 重置id
+const pageInfo = ref([
+  {
+    type: 'ytj',
+    head: {
+      img: ytj_0,
+      title: 'ytj',
+      desc: 'ytj'
+    },
+    serviceNavList: [
+      {
+        id: 'section-1',
+        title: '产品概述'
+      },
+      {
+        id: 'section-2',
+        title: '产品特点'
+      },
+      {
+        id: 'section-3',
+        title: '功能介绍'
+      },
+      {
+        id: 'section-4',
+        title: '应用框图'
+      },
+      {
+        id: 'section-5',
+        title: '管理平台'
+      }
+    ],
+    content: [
+      { picUrl: ytj_1, id: 'section-1' },
+      { picUrl: ytj_2, id: 'section-2' },
+      { picUrl: ytj_3, id: 'section-3' },
+      { picUrl: ytj_4, id: 'section-4' },
+      { picUrl: ytj_5, id: 'section-5' }
+    ]
+  },
+  {
+    type: 'dxzh',
+    head: {
+      img: bg_img,
+      title: '大型综合体智慧消防解决方案'
+    },
+    serviceNavList: [
+      {
+        id: 'section-1',
+        title: '背景介绍'
+      },
+      {
+        id: 'section-2',
+        title: '方案概述'
+      },
+      {
+        id: 'section-3',
+        title: '核心功能'
+      }
+    ],
+    content: [
+      { picUrl: dxzh_1, id: 'section-1' },
+      { picUrl: dxzh_2, id: 'section-2' },
+      { picUrl: dxzh_3, id: 'section-3' }
+    ]
+  },
+  {
+    type: 'yyzh',
+    head: {
+      img: bg_img,
+      title: '医院智慧 消防解决方案'
+    },
+    serviceNavList: [
+      {
+        id: 'section-1',
+        title: '背景介绍'
+      },
+      {
+        id: 'section-2',
+        title: '方案概述'
+      },
+      {
+        id: 'section-3',
+        title: '核心功能'
+      }
+    ],
+    content: [
+      { picUrl: yyzh_1, id: 'section-1' },
+      { picUrl: yyzh_2, id: 'section-2' },
+      { picUrl: yyzh_3, id: 'section-3' }
+    ]
+  }
+])
+//debugger
+onMounted(() => {
+  pageType.value = window.location.href.split('?')[1].split('=')[1]
+  pageData.value = pageInfo.value.filter(
+    (item) => item.type === pageType.value
+  )[0]
+  //debugger
+  isYtj.value = pageType.value === 'ytj'
+})
+
+// 监听router.currentRoute.value.path 变化
+watch(
+  () => router.currentRoute.value.query,
+  (newValue, oldValue) => {
+    //debugger
+    pageType.value = newValue.pageType
+    pageData.value = pageInfo.value.filter(
+      (item) => item.type === pageType.value
+    )[0]
+    isYtj.value = pageType.value === 'ytj'
+  }
+)
+//debugger
+</script>
+<style lang="scss">
+.serviceDetail {
+  box-sizing: border-box;
+
+  #myNav {
+    li {
+      a {
+        font-size: 15px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+      &:hover {
+        a {
+          color: #1e73be;
+          background-color: #1e73be11;
+        }
+      }
+    }
+    li.active {
+      background-color: transparent;
+      border-bottom: 3px solid #1e73be;
+      a {
+        color: #1e73be;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .hoverlist {
+    .card {
+      transition: all 0.5s;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 10%;
+      display: flex;
+      flex-direction: column;
+      color: white;
+      justify-content: center;
+      &-title {
+        font-size: 30px;
+        font-weight: bold;
+      }
+      &-detail {
+        font-size: 20px;
+        margin-top: 10px;
+        display: none;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        .card-detail {
+          display: block;
+        }
+      }
+    }
+  }
 }
 </style>

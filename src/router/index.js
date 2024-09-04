@@ -44,11 +44,11 @@ const routes = [
         }
       },
       {
-        path: '/wholeKnowleadge',
-        name: 'wholeKnowleadge',
-        component: () => import('@/view/WholeKnowleadge.vue'),
+        path: '/demoViewDetail',
+        name: 'demoViewDetail',
+        component: () => import('@/view/DemoViewDetail.vue'),
         meta: {
-          title: '一体机'
+          title: '案例聚焦-详情'
         }
       },
       {
@@ -86,16 +86,16 @@ const routes = [
         component: () => import('@/view/Service.vue'),
         props: true,
         meta: {
-          title: '相关服务'
+          title: '行业解决方案'
         }
       },
       {
-        path: '/servicedetail',
+        path: '/serviceDetail',
         name: 'serviceDetail',
         component: () => import('@/view/ServiceDetail.vue'),
         props: true,
         meta: {
-          title: '相关服务-详情'
+          title: '行业解决方案-详情'
         }
       },
       {
@@ -103,7 +103,7 @@ const routes = [
         name: 'newsInformation',
         component: () => import('@/view/NewsInformation.vue'),
         meta: {
-          title: '新闻动态'
+          title: '公司动态'
         }
       },
       {
@@ -112,14 +112,6 @@ const routes = [
         component: () => import('@/view/CompanyIntroduction.vue'),
         meta: {
           title: '公司介绍'
-        }
-      },
-      {
-        path: '/jobchance',
-        name: 'jobChance',
-        component: () => import('@/view/JobChance.vue'),
-        meta: {
-          title: '工作机会'
         }
       },
       {
@@ -137,7 +129,8 @@ const routes = [
 export function createRouter() {
   return _createRouter({
     history: createWebHashHistory(),
-    routes
+    routes,
+    scrollBehavior: () => ({ left: 0, top: 0 }),
   })
 }
 

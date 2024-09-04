@@ -1,6 +1,6 @@
 <template>
   <div id="GoTop" @click="GoTop()">
-    <span class="glyphicon glyphicon-chevron-up"></span>
+    <span style="color: #007AFF;" class="glyphicon glyphicon-chevron-up"></span>
   </div>
 </template>
 

@@ -81,7 +81,7 @@ const router = useRouter()
 
 function ServiceClick(type) {
   router.push({
-    name: 'wholeKnowleadge',
+    name: 'serviceDetail',
     query: { pageType: type }
   })
 }
@@ -136,7 +136,7 @@ onMounted(() => {
   right: 0;
   bottom: 0;
   margin: auto;
-  z-index: 9999999;
+  z-index: 99;
   width: 100%;
   height: 100%;
   transition: all 0.5s ease;

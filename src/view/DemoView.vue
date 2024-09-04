@@ -31,7 +31,7 @@
       <div class="Service-container row text-center">
         <div
           class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp"
-          v-for="(item, index) in serviceList"
+          v-for="(item, index) in industryList"
           :key="index"
           @click="ServiceClick(item.type)"
         >
@@ -53,7 +53,7 @@
       <div class="Service-container row text-center">
         <div
           class="Service-item col-xs-12 col-sm-6 col-md-3 wow slideInUp"
-          v-for="(item, index) in serviceList"
+          v-for="(item, index) in energyList"
           :key="index"
           @click="ServiceClick(item.type)"
         >
@@ -77,54 +77,114 @@
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 import WOW from 'wow.js'
-import service1 from '@/assets/img/service1.jpg'
-import service2 from '@/assets/img/service2.jpg'
-import service3 from '@/assets/img/service3.jpg'
-import service4 from '@/assets/img/service4.jpg'
-import service5 from '@/assets/img/service1.jpg'
+import service1 from '@/assets/img/case_1.jpg'
+import service2 from '@/assets/img/case_2.jpg'
+import service3 from '@/assets/img/case_3.jpg'
+import service4 from '@/assets/img/case_4.jpg'
+import service5 from '@/assets/img/case_5.jpeg'
+import service6 from '@/assets/img/case_6.jpg'
+import service7 from '@/assets/img/case_7.jpg'
+import service8 from '@/assets/img/case_8.jpeg'
+import service9 from '@/assets/img/case_9.jpg'
+import service10 from '@/assets/img/case_10.jpeg'
+import service11 from '@/assets/img/case_11.jpeg'
+import service12 from '@/assets/img/case_12.jpg'
 const serviceList = [
   {
     id: 'section-1',
-    title: '大型综合体智慧消防解决方案',
+    title: '政府监管项目',
     eng_title: 'case',
     img: service1,
-    type:'dxzh'
+    type:'zfjg'
   },
   {
     id: 'section-2',
-    title: '医院智慧消防解决方案',
+    title: '商业综合体项目',
     eng_title: 'case',
     img: service2,
-    type:'yyzh'
+    type:'syzht'
   },
   {
     id: 'section-3',
-    title: '电力行业智慧消防解决方案',
+    title: '九小场所项目',
     eng_title: 'case',
     img: service3,
-    type:'dlhy'
+    type:'jxcs'
   },
   {
     id: 'section-4',
-    title: '化工园区安全生产智慧服务方案',
+    title: '铁路交通项目',
     eng_title: 'case',
     img: service4,
-    type:'hgyq'
+    type:'tljt'
   },
   {
     id: 'section-5',
-    title: '餐厨垃圾智能化解决方案',
+    title: '社区物管项目',
     eng_title: 'case',
     img: service5,
-    type:'cclj'
+    type:'sqwg'
   },
+  {
+    id: 'section-6',
+    title: '产业园区项目',
+    eng_title: 'case',
+    img: service6,
+    type:'产业园区项目'
+  },
+]
+const industryList = [
+  {
+    id: 'section-7',
+    title: '化工行业项目',
+    eng_title: 'case',
+    img: service7,
+    type:'hghy'
+  },
+  {
+    id: 'section-8',
+    title: '智慧酒窖项目',
+    eng_title: 'case',
+    img: service8,
+    type:'zhjj'
+  },
+  {
+    id: 'section-9',
+    title: '文物行业项目',
+    eng_title: 'case',
+    img: service9,
+    type:'wwhy'
+  }
+]
+const energyList = [
+  {
+    id: 'section-10',
+    title: '锂电池储能站项目',
+    eng_title: 'case',
+    img: service10,
+    type:'hghy'
+  },
+  {
+    id: 'section-11',
+    title: '石油石化项目',
+    eng_title: 'case',
+    img: service11,
+    type:'zhjj'
+  },
+  {
+    id: 'section-12',
+    title: '电力电网项目',
+    eng_title: 'case',
+    img: service12,
+    type:'wwhy'
+  }
 ]
 
 const router = useRouter()
 
 function ServiceClick(type) {
   router.push({
-    name: 'wholeKnowleadge',
+    name: 'demoViewDetail',
     query: { pageType: type }
   })
 }
@@ -166,10 +226,14 @@ onMounted(() => {
 }
 .Service-item-img {
   width: 100%;
+  height: 150px;
   overflow: hidden;
+  position: relative;
 }
 .Service-item-img img {
   width: 100%;
+  height: 100%;
+  object-fit: fill;
   transition: all 0.5s ease;
 }
 .Service-item-border {
@@ -179,7 +243,7 @@ onMounted(() => {
   right: 0;
   bottom: 0;
   margin: auto;
-  z-index: 9999999;
+  z-index: 99;
   width: 100%;
   height: 100%;
   transition: all 0.5s ease;

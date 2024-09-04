@@ -30,6 +30,17 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './src')
     }
-  }
+  },
+  server: {
+    host: '192.168.3.9',
+    port: 5173,
+    // proxy: {
+    //   '/api': {
+    //     target: 'https://api.github.com',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api/, '')
+    //   }
+    // }
+  },
 })
 
