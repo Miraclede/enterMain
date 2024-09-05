@@ -5,11 +5,31 @@
       <p style="color: #b2b2b2">Service capability</p>
     </div>
     <div class="container">
-      <div class="Service-container row text-center" style="display: flex;gap: 10px;justify-content: center;">
-        <!-- col-xs-12 col-sm-6 col-md-3 -->
+      <div class="Service-container row text-center hidden-xs" style="display: flex;gap: 10px;justify-content: center;">
         <div
           class="Service-item  wow slideInUp"
           style="width: 20%;"
+          v-for="(item, index) in serviceList"
+          :key="index"
+          @click="ServiceClick(item.type)"
+        >
+          <div class="Service-item-wrapper" >
+            <div class="Service-item-top">
+              <h4>{{ item.title }}</h4>
+              <i></i>
+              <p>{{ item.eng_title }}</p>
+            </div>
+            <div class="Service-item-img">
+              <img :src="item.img" alt="服务" />
+            </div>
+            <div class="Service-item-border"></div>
+          </div>
+        </div>
+      </div>
+      <div class="Service-container row text-center visible-xs" style="display: flex;flex-direction: column;gap: 10px;justify-content: center;">
+        <div
+          class="Service-item  wow slideInUp"
+          style="width: 100%;"
           v-for="(item, index) in serviceList"
           :key="index"
           @click="ServiceClick(item.type)"

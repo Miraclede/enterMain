@@ -9,7 +9,11 @@
           style="display: flex; align-items: center"
         >
           <span class="glyphicon glyphicon-earphone"></span>{{ phone }}
-          <span class="glyphicon glyphicon-envelope"></span>{{ email }}
+          <span
+            style="margin-left: 24px"
+            class="glyphicon glyphicon-envelope"
+          ></span
+          >{{ email }}
         </div>
       </div>
     </div>
@@ -33,7 +37,6 @@
               v-if="item.children.length > 0"
               class="glyphicon glyphicon-menu-down"
             ></span>
-            <i class="underline"></i>
           </router-link>
           <dl v-if="item.children.length > 0">
             <template v-for="(i, n) in item.children" :key="n">
@@ -78,45 +81,46 @@
         <ul
           id="menu"
           class="header-nav-m-wrapper collapse"
-          style="overflow-y: auto"
+          style="height: 400px; overflow-y: auto"
         >
           <template
             v-for="(item, index) in navList"
             :key="index"
-            :class="index == navIndex ? 'active' : ''"
-            @click="navClick(index, item.name)"
-            data-toggle="collapse"
-            data-target="#menu"
+            @click="phoneClick(index, item.name)"
           >
+            <!-- 2级菜单 -->
             <ul v-if="item.children.length > 0">
-              <template
-                v-for="(item_1, index_1) in item.children"
-                :key="index_1 + 10"
-                @click="navClick(index_1, item_1.name)"
-                data-toggle="collapse"
-                data-target="#menu"
-              >
+              <template v-for="(item_1, index_1) in item.children">
+                <!-- 3级菜单 -->
                 <ul v-if="item_1.children.length > 0">
                   <template
                     v-for="(item_2, index_2) in item_1.children"
-                    :key="index_2 + 20"
-                    @click="navClick(index_2, item_2.name)"
-                    data-toggle="collapse"
-                    data-target="#menu"
+                    :key="index_2"
                   >
-                    <li>
+                    <li
+                      style="
+                        color: white;
+                        font-size: 12px;
+                        border-bottom: 1px dashed #eee;
+                      "
+                      data-toggle="collapse"
+                      data-target="#menu"
+                      @click="menuClick"
+                    >
                       <router-link
+                        style="color: white; font-size: 12px"
                         :to="{
                           path: item_2.path,
                           query: { pageType: item_2.type }
                         }"
                       >
                         {{ item_2.name }}
+                        <i class="underline"></i>
                       </router-link>
                     </li>
                   </template>
                 </ul>
-                <li>
+                <li v-else>
                   <router-link :to="item_1.path">
                     {{ item_1.name }}
                     <i class="underline"></i>
@@ -124,7 +128,13 @@
                 </li>
               </template>
             </ul>
-            <li v-else>
+            <!-- 1级菜单 -->
+            <li
+              data-toggle="collapse"
+              data-target="#menu"
+              @click="menuClick, navClick(index, item.name)"
+              v-else
+            >
               <router-link :to="item.path">
                 {{ item.name }}
                 <i class="underline"></i>
@@ -250,10 +260,29 @@ const navList = [
     children: []
   }
 ]
+const lastQuery = ref()
 watch(
   () => router.currentRoute.value,
   (newValue, oldValue) => {
-    console.log('header:', newValue, oldValue)
+    if (newValue.query.pageType) {
+      console.log('保存啦')
+      lastQuery.value = newValue.query.pageType
+    } else {
+      if (oldValue.path && newValue.path == oldValue.path) {
+      } else {
+        console.log('清空啦')
+
+        lastQuery.value = ''
+      }
+    }
+
+    console.log(
+      'header:',
+      newValue,
+      oldValue,
+      'query',
+      lastQuery.value || 'null'
+    )
     if (newValue.path == '/basicPage') {
       navIndex.value = 1
       menuName.value = '产品及服务'
@@ -265,13 +294,11 @@ watch(
         navIndex.value = 2
         menuName.value = '行业解决方案'
       }
-    }else if(newValue.path == '/demoViewDetail'){
-        navIndex.value = 3
-        menuName.value = '案例聚焦'
-    } 
-    else {
+    } else if (newValue.path == '/demoViewDetail') {
+      navIndex.value = 3
+      menuName.value = '案例聚焦'
+    } else {
       let index = navList.findIndex((item) => item.path == newValue.path)
-      console.log('headerIndex', index)
 
       navIndex.value = index
       menuName.value = navList[index].name
@@ -283,7 +310,21 @@ function navClick(index, name) {
     navIndex.value = index
     sessionStorage.setItem('navIndex', index)
     menuName.value = name
+  } else {
+    console.log(99999, lastQuery.value)
+
+    if (lastQuery.value) {
+      router.push({
+        path: router.currentRoute.value.path,
+        query: { pageType: lastQuery.value }
+      })
+    }
   }
+}
+function phoneClick(index, name) {
+  console.log('phoneClick', index, name)
+
+  menuName.value = name
 }
 function menuClick() {
   if (menuClass.value == 'glyphicon glyphicon-menu-down') {
@@ -352,7 +393,7 @@ function menuClick() {
   line-height: 110px;
   float: right;
   margin: 0;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 /* 导航栏 每个导航 */
@@ -464,8 +505,19 @@ function menuClick() {
   background: #ccc;
 }
 
+@media screen and (max-width: 992px) and (min-width: 765px) {
+  /* 导航栏logo */
+  #header .header-nav .header-nav-logo {
+    display: none;
+  }
+
+  .Service-item-top {
+    font-size: 20px;
+  }
+}
+
 //小屏幕适配
-@media screen and (max-width: 997px) {
+@media screen and (max-width: 765px) {
   #header .header-nav-m {
     position: relative;
   }

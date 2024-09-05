@@ -9,8 +9,8 @@
       }"
     >
       <div class="container" style="padding-top: 38px;">
-        <button class="btn" @click="goBack" style="background-color: #0052D9;color: white;">返回</button>
-        <div style="margin-top: 72px;font-size: 42px;color: rgba(0, 0, 0, 0.9);max-width: 294px;color:black">{{ pageData ? pageData.head.title : '-' }}</div>
+        <button class="btn" @click="goBack" style="background-color: #0052D9;color: white;width: 80px;">返回</button>
+        <div class="demoTitle" style="margin-top: 72px;font-size: 42px;color: rgba(0, 0, 0, 0.9);max-width: 294px;color:white">{{ pageData ? pageData.head.title : '-' }}</div>
       </div>
     </div>
 
@@ -51,7 +51,7 @@ import sysh_2 from '@/assets/img/sysh_2.png'
 import dldw_1 from '@/assets/img/dldw_1.png'
 import dldw_2 from '@/assets/img/dldw_2.png'
 
-import bg_img from '@/assets/img/header_2.png'
+import bg_img from '@/assets/img/header_1.png'
 
 const router = useRouter()
 const pageType = ref('')
@@ -159,15 +159,15 @@ const pageInfo = ref([
     ]
   },
   {
-    type: 'dldw',
+    type: 'wwhy',
     head: {
       img: bg_img,
       title: '案例聚焦',
-      desc: 'dldw'
+      desc: 'wwhy'
     },
     content: [
-      { picUrl: dldw_1 },
-      { picUrl: dldw_2 }
+      { picUrl: wwhy_1 },
+      { picUrl: wwhy_2 }
     ]
   },
   {

@@ -1,9 +1,12 @@
 <!-- 图片展示 -->
 <template>
   <div class="container basicPage">
-    <div v-for="(i, i_n) in pageData.content" :key="i_n">
-      <img style="width: 100%" :src="i.picUrl" />
-    </div>
+    <template v-if="pageData">
+      <div v-for="(i, i_n) in pageData.content" :key="i_n">
+        <img style="width: 100%" :src="i.picUrl" />
+      </div>
+    </template>
+
     <div v-if="pageData.list">
       <div class="commonTitle text-center">优势亮点</div>
       <div class="row text-center hoverlist">
@@ -18,7 +21,7 @@
               backgroundSize: 'cover',
               'background-repeat': 'no-repeat',
               height: '350px',
-              margin: '10px',
+              margin: '10px'
             }"
           >
             <div class="card">
@@ -182,7 +185,7 @@ const pageInfo = ref([
           '系统通过优化管理流程、提高管理效率和质量，为企业带来显著的管理变革。引入先进的管理理念和技术手段，实现生产过程的实时监控和数据分析，为管理层提供精准的决策支持。'
       }
     ]
-  },
+  }
 ])
 
 onMounted(() => {
@@ -234,7 +237,6 @@ watch(
         .card-detail {
           display: block;
         }
-
       }
     }
   }

@@ -22,6 +22,7 @@
         <div class="swiper-lazy-preloader"></div>
         <div class="swiper-slide-title">
           <h1>{{ item.title }}</h1>
+          <div class="subTitle" v-if="item.title2">{{ item.title2 }}</div>
           <p>{{ item.content }}</p>
         </div>
       </swiper-slide>
@@ -44,15 +45,15 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
-          <h2 class="bigData-title" @click="basicClick('bsjx')">
+          <h2 class="bigData-title pointer" @click="basicClick('bsjx')">
             国家工业互联网标识解析安全应急行业公共服务平台
           </h2>
           <p style="margin-bottom: 3rem; font-size: 16px">
             简介：公共服务平台是以服务、工具及技术等形式为安全应急产业生态圈中其他成员提供解决方案的线上综合性平台。通过工业互联网标识解析，链接生产商、供应商、服务商、终端用户，强化监管单位运营能力。推动安全应急行业产品交易、全生命周期管理、质量追溯、区块链存证、产品在线监控、售后服务等业务协同。
           </p>
-          <p class="pull-left" style="font-size: 24px">电脑/手机 全设备支持</p>
+          <p class="pull-left bigData-title-support">电脑/手机 全设备支持</p>
           <p
-            class="pull-right"
+            class="pull-right pointer"
             @click="basicClick('bsjx')"
             style="font-size: 15px; color: #1e73be"
           >
@@ -66,7 +67,7 @@
     <div id="bigData" style="padding-top: 0" class="container-fuild">
       <div class="row bigData-container">
         <div class="col-xs-12 col-sm-12 col-md-6">
-          <h2 @click="basicClick('csaq')" class="bigData-title">
+          <h2 @click="basicClick('csaq')" class="bigData-title pointer">
             城市安全运营平台
           </h2>
           <p style="margin-bottom: 3rem; font-size: 16px">
@@ -75,7 +76,7 @@
           <p class="pull-left" style="font-size: 24px">电脑/手机 全设备支持</p>
           <p
             @click="basicClick('csaq')"
-            class="pull-right"
+            class="pull-right pointer"
             style="font-size: 15px; color: #1e73be"
           >
             了解更多<span class="glyphicon glyphicon-menu-right"></span>
@@ -117,9 +118,10 @@
           }"
         >
           <swiper-slide
-            class="swiper-slide customer-block"
-            style="padding: 30px 80px;"
+            class="swiper-slide customer-block pointer"
+            style="padding: 30px 80px"
             v-for="(item, index) in customerList"
+            @click="basicClick(item.type)"
             :key="index"
           >
             <div class="customer-logo">
@@ -131,7 +133,7 @@
               <small>{{ item.content }}</small>
               <p
                 @click="basicClick(item.type)"
-                class="pull-right"
+                class="pull-right pointer"
                 style="font-size: 15px; color: #1e73be"
               >
                 了解更多<span class="glyphicon glyphicon-menu-right"></span>
@@ -156,6 +158,13 @@
             </div>
             <div class="customer-content1">
               <small>{{ item.content }}</small>
+              <p
+                @click="basicClick(item.type)"
+                class="pull-right pointer"
+                style="font-size: 14px; color: #1e73be"
+              >
+                了解更多<span class="glyphicon glyphicon-menu-right"></span>
+              </p>
             </div>
             <div class="customer-content2">
               <small>{{ item.title }}</small>
@@ -190,12 +199,15 @@
           "
           class="col-xs-12 col-sm-12 col-md-6"
         >
-          <h2 @click="serviceClick('ytj')" class="bigData-title">智慧消防一体机</h2>
+          <h2 @click="serviceClick('ytj')" class="bigData-title pointer">
+            智慧消防一体机
+          </h2>
           <p style="margin-bottom: 3rem; font-size: 16px">
             智慧消防一体机专为有消安一体化监管需求的场所设计，通过物联网技术，低成本快速实现远程监控与日常监管，提升消防管理效率与安全。集大数据、云计算于一体，实现水压、电气火灾等多维度监测与报警，界面直观展示隐患。兼容各品牌传感器，灵活配置，覆盖全消防设备监测。作为数字孪生平台，内置可视化大屏，支持定制数据展示。该一体机是我司与消防专家共创的城市级消防全生态解决方案，助力消防智能化升级。
           </p>
           <p
             @click="serviceClick('ytj')"
+            class="pointer"
             style="font-size: 15px; color: #1e73be"
           >
             了解更多<span class="glyphicon glyphicon-menu-right"></span>
@@ -204,7 +216,7 @@
       </div>
     </div>
 
-    <!-- 为什么选择我们 -->
+    <!-- 荣誉资质-->
     <div id="whyChooseUs" class="conatiner-fuild">
       <div class="container">
         <div class="whyChooseUs-title text-center">
@@ -222,7 +234,7 @@
             disableOnInteraction: false,
             pauseOnMouseEnter: true
           }"
-          class="my-swiper"
+          class="my-swiper hidden-xs"
           :speed="6000"
         >
           <swiper-slide
@@ -247,6 +259,53 @@
                 {{ item.title }}
               </p>
               <img class="center-block" :src="item.logo" alt="logo" />
+              <div
+                class="text-center"
+                style="min-height: 85px"
+                v-html="item.content"
+                onmouseenter="this.style.color='#28f'"
+                onmouseleave="this.style.color='#ccc'"
+              ></div>
+            </div>
+          </swiper-slide>
+        </swiper>
+
+        <swiper
+          :modules="modules"
+          :slides-per-view="1"
+          :space-between="10"
+          lazy
+          loop
+          :autoplay="{
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }"
+          class="my-swiper visible-xs"
+          :speed="6000"
+        >
+          <swiper-slide
+            class="honor-swiper"
+            v-for="(item, index) in serverList"
+            :key="index"
+          >
+            <div
+              class="server-block wow slideInUp"
+              onmouseenter="this.style.color='#28f';this.style.borderColor='#28f'"
+              onmouseleave="this.style.color='#666';this.style.borderColor='#ccc'"
+            >
+              <p
+                class="text-center"
+                style="
+                  display: inline-block;
+                  min-height: 55px;
+                  text-align: center;
+                  width: 100%;
+                "
+              >
+                {{ item.title }}
+              </p>
+              <img class="center-block img-responsive" :src="item.logo" alt="logo" />
               <div
                 class="text-center"
                 style="min-height: 85px"
@@ -318,6 +377,7 @@ const swiperList = [
   {
     img: banner2,
     title: '国家工业互联网标识解析安全应急行业公共服务平台',
+    title2: '城市安全运营平台',
     content: '数智消防 ｜ 智改数转 ｜ 工业互联网+安全生产'
   }
 ]
@@ -485,6 +545,9 @@ onMounted(() => {
   font-size: 50px;
   margin-top: 12%;
 }
+#swiper .banner-swiper .swiper-slide-title  .subTitle {
+  font-size: 50px;
+}
 
 #swiper .banner-swiper .swiper-slide-title > p {
   font-size: 20px;
@@ -503,6 +566,10 @@ onMounted(() => {
   padding-bottom: 10px;
   font-size: 36px;
   border-bottom: 1px solid #ccc;
+
+  &-support {
+    font-size: 24px;
+  }
 }
 
 #bigData p {
@@ -610,7 +677,7 @@ onMounted(() => {
   padding-top: 34px;
 }
 
-/* 为什么选择我们 */
+/* 荣誉资质*/
 #whyChooseUs {
   padding: 100px;
 }
@@ -655,12 +722,51 @@ onMounted(() => {
     height: 200px;
   }
 
+  .commonTitle {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #swiper .banner-swiper .swiper-slide-title > h1 {
+    font-size: 26px;
+    margin-top: 6%;
+  }
+  #swiper .banner-swiper .swiper-slide-title .subTitle {
+    font-size: 26px;
+    line-height: 26px;
+  }
+
+  #swiper .banner-swiper .swiper-slide-title > p {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+
+  #customer .customer-content1 {
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 16px;
+  border-bottom: 1px solid #0ce9f1;
+}
+
+#customer .customer-content2 {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  padding-top: 12px;
+  color: #007aff;
+}
+
   #bigData {
     padding: 30px;
   }
 
   #bigData .bigData-title {
     font-size: 20px;
+
+    &-support {
+      font-size: 16px;
+    }
   }
 
   #bigData .bigData-device {
@@ -737,14 +843,14 @@ onMounted(() => {
   }
 
   #whyChooseUs .server-block {
-    padding: 50px 0;
+    padding: 10px 0;
     border: 1px solid #ccc;
     border-bottom: 5px solid #ccc;
   }
 
   #whyChooseUs .server-block img {
-    width: 48px;
-    height: 48px;
+    width: 188px;
+    height: 188px;
   }
 
   #whyChooseUs .server-block > p {

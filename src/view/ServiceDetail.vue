@@ -17,7 +17,7 @@
         <button
           class="btn"
           @click="goBack"
-          style="background-color: #0052d9; color: white"
+          style="background-color: #0052d9; color: white;width: 80px;"
         >
           返回
         </button>
@@ -75,7 +75,7 @@ import hgyq_3 from '@/assets/img/hgyq_3.png'
 import cclj_1 from '@/assets/img/cclj_1.png'
 import cclj_2 from '@/assets/img/cclj_2.png'
 import cclj_3 from '@/assets/img/cclj_3.png'
-import bg_img from '@/assets/img/header_1.png'
+import bg_img from '@/assets/img/header_2.png'
 
 const router = useRouter()
 const pageType = ref('')
@@ -136,8 +136,7 @@ const pageInfo = ref([
     type: 'dxzh',
     head: {
       img: bg_img,
-      title:
-        '<div class="serveTitle">大型综合体智慧消防<p>解决方案</p></div>'
+      title: '<div class="serveTitle">大型综合体智慧消防<p>解决方案</p></div>'
     },
     serviceNavList: [
       {
@@ -163,8 +162,7 @@ const pageInfo = ref([
     type: 'yyzh',
     head: {
       img: bg_img,
-      title:
-        '<div class="serveTitle">医院智慧消防<p>解决方案</p></div>'
+      title: '<div class="serveTitle">医院智慧消防<p>解决方案</p></div>'
     },
     serviceNavList: [
       {
@@ -190,8 +188,7 @@ const pageInfo = ref([
     type: 'dlhy',
     head: {
       img: bg_img,
-      title:
-        '<div class="serveTitle">电力行业智慧消防<p>解决方案</p></div>'
+      title: '<div class="serveTitle">电力行业智慧消防<p>解决方案</p></div>'
     },
     serviceNavList: [
       {
@@ -217,35 +214,7 @@ const pageInfo = ref([
     type: 'hgyq',
     head: {
       img: bg_img,
-      title:
-        '<div class="serveTitle">化工园区安全生产<p>智慧服务方案</p></div>'
-    },
-    serviceNavList: [
-      {
-        id: 'section-1',
-        title: '背景介绍'
-      },
-      {
-        id: 'section-2',
-        title: '主要问题'
-      },
-      {
-        id: 'section-3',
-        title: '核心功能'
-      }
-    ],
-    content: [
-      { picUrl: hgyq_1, id: 'section-1' },
-      { picUrl: hgyq_2, id: 'section-2' },
-      { picUrl: hgyq_3, id: 'section-3' }
-    ]
-  },
-  {
-    type: 'cclj',
-    head: {
-      img: bg_img,
-      title:
-        '<div class="serveTitle">餐厨垃圾<p>智能化解决方案</p></div>'
+      title: '<div class="serveTitle">化工园区安全生产<p>智慧服务方案</p></div>'
     },
     serviceNavList: [
       {
@@ -258,7 +227,33 @@ const pageInfo = ref([
       },
       {
         id: 'section-3',
-        title: '核心功能'
+        title: '方案特色'
+      }
+    ],
+    content: [
+      { picUrl: hgyq_1, id: 'section-1' },
+      { picUrl: hgyq_2, id: 'section-2' },
+      { picUrl: hgyq_3, id: 'section-3' }
+    ]
+  },
+  {
+    type: 'cclj',
+    head: {
+      img: bg_img,
+      title: '<div class="serveTitle">餐厨垃圾<p>智能化解决方案</p></div>'
+    },
+    serviceNavList: [
+      {
+        id: 'section-1',
+        title: '背景介绍'
+      },
+      {
+        id: 'section-2',
+        title: '主要问题'
+      },
+      {
+        id: 'section-3',
+        title: '方案概述'
       }
     ],
     content: [
@@ -301,7 +296,7 @@ watch(
     font-size: 42px;
     color: rgba(0, 0, 0, 0.9);
     max-width: 400px;
-    color: white;
+    color: black;
   }
 
   #myNav {
@@ -352,6 +347,31 @@ watch(
         background-color: rgba(0, 0, 0, 0.8);
         .card-detail {
           display: block;
+        }
+      }
+    }
+  }
+
+    /* 媒体查询（手机） */
+    @media screen and (max-width: 768px) {
+    #myNav {
+      li {
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        a {
+          font-size: 15px;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+      li.active {
+        background-color: transparent;
+        border-bottom: none;
+        border: 1px solid #1e73be;
+        border-radius: 6px;
+        // border-bottom: 3px solid #1e73be;
+        a {
+          color: #1e73be;
+          background-color: transparent;
         }
       }
     }
