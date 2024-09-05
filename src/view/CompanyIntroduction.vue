@@ -11,7 +11,9 @@
             class="comSwiper-left-item"
             v-for="(item, index) in leftList"
             :key="index"
-            @click="indexNow = index,changeSwiper(index)"
+            @click=";(indexNow = index), changeSwiper(index)"
+            @mouseenter.native="mouseEnter"
+            @mouseleave.native="mouseLeave"
             :class="indexNow == index ? 'active' : ''"
           >
             {{ item.title }}
@@ -19,17 +21,19 @@
         </div>
         <div class="comSwiper-right">
           <swiper
-            class="swipers"
+            class="swiper"
             style="display: flex; justify-content: center; align-items: center"
-            :modules="[Pagination, Autoplay]"
+            :modules="[Pagination, Scrollbar, Lazy, Autoplay,Controller ]"
             :direction="'vertical'"
             :slides-per-view="1"
-            :space-between="50"
+            :space-between="0"
+            :controller="{ control: controlledSwiper }"
+            @swiper="onSwiper"
             @slideChange="slideChange"
             lazy
             loop
             :autoplay="{
-              delay: 30000,
+              delay: 3000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true
             }"
@@ -66,8 +70,7 @@ import introduce_1 from '@/assets/img/introduce_1.png'
 import introduce_2 from '@/assets/img/introduce_2.png'
 import introduce_3 from '@/assets/img/introduce_3.png'
 import introduce_4 from '@/assets/img/introduce_4.png'
-import { Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay } from 'swiper'
-import Swipers from 'swiper'
+import { Navigation, Pagination, Scrollbar, A11y, Lazy, Autoplay,Controller  } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -76,28 +79,30 @@ import 'swiper/css/scrollbar'
 import 'swiper/css/lazy'
 import 'swiper/css/autoplay'
 
-
-var swipers = new Swipers('.swipers')
-console.log('mySwi',swipers)
-
+const controlledSwiper = ref(null)
 onMounted(() => {
   var wow = new WOW()
   wow.init()
 })
 
-const refSwiper  = ref(null)
+const mouseEnter = () => {  
+  controlledSwiper.value.autoplay.stop()
+}
 
-const changeSwiper=(index)=>{
-  console.log('changeSwiper', index)
-  // swipers.slideTo(index)
-  swipers.slideNext()
-  // swipers.activeIndex = index
+const mouseLeave = () => {
+  controlledSwiper.value.autoplay.start()
+}
+
+const onSwiper = (swiper) => {
+  controlledSwiper.value = swiper
+}
+
+const changeSwiper = (index) => {
+  controlledSwiper.value.slideTo(index+1, 0)
 }
 
 const indexNow = ref(0)
 const slideChange = (item) => {
-  console.log(999, item.activeIndex)
-
   indexNow.value = item.activeIndex % 5 == 0 ? 0 : (item.activeIndex % 5) - 1
 }
 
@@ -224,4 +229,3 @@ const pageData = [
   }
 }
 </style>
-
