@@ -34,11 +34,11 @@
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 import WOW from 'wow.js'
-import service1 from '@/assets/img/service1.jpg'
-import service2 from '@/assets/img/service2.jpg'
-import service3 from '@/assets/img/service3.jpg'
-import service4 from '@/assets/img/service4.jpg'
-import service5 from '@/assets/img/service1.jpg'
+import service1 from '@/assets/img/case_2.jpg'
+import service2 from '@/assets/img/icon_yy.jpg'
+import service3 from '@/assets/img/case_12.jpg'
+import service4 from '@/assets/img/case_7.jpg'
+import service5 from '@/assets/img/icon_cclj.jpg'
 const serviceList = [
   {
     id: 'section-1',
@@ -123,10 +123,13 @@ onMounted(() => {
 }
 .Service-item-img {
   width: 100%;
+  height: 150px;
   overflow: hidden;
 }
 .Service-item-img img {
   width: 100%;
+  height: 100%;
+  object-fit: fill;
   transition: all 0.5s ease;
 }
 .Service-item-border {

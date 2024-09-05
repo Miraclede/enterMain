@@ -13,9 +13,16 @@
       }"
       v-else
     >
-      <div class="container" style="padding-top: 38px;">
-        <button class="btn" @click="goBack" style="background-color: #0052D9;color: white;">返回</button>
-        <div style="margin-top: 72px;font-size: 42px;color: rgba(0, 0, 0, 0.9);max-width: 294px;color:white">{{ pageData ? pageData.head.title : '-' }}</div>
+      <div class="container" style="padding-top: 38px">
+        <button
+          class="btn"
+          @click="goBack"
+          style="background-color: #0052d9; color: white"
+        >
+          返回
+        </button>
+
+        <div v-html="pageData ? pageData.head.title : '-'"></div>
       </div>
     </div>
 
@@ -38,7 +45,6 @@
 
     <!-- 图片 -->
     <div v-if="pageData" class="container">
-
       <div v-for="(i, i_n) in pageData.content" :key="i_n">
         <img :id="i.id" style="width: 100%" :src="i.picUrl" />
       </div>
@@ -60,7 +66,16 @@ import dxzh_3 from '@/assets/img/dxzh_3.png'
 import yyzh_1 from '@/assets/img/yyzh_1.png'
 import yyzh_2 from '@/assets/img/yyzh_2.png'
 import yyzh_3 from '@/assets/img/yyzh_3.png'
-import bg_img from '@/assets/img/contact_us_bg.jpg'
+import dlhy_1 from '@/assets/img/dlhy_1.png'
+import dlhy_2 from '@/assets/img/dlhy_2.png'
+import dlhy_3 from '@/assets/img/dlhy_3.png'
+import hgyq_1 from '@/assets/img/hgyq_1.png'
+import hgyq_2 from '@/assets/img/hgyq_2.png'
+import hgyq_3 from '@/assets/img/hgyq_3.png'
+import cclj_1 from '@/assets/img/cclj_1.png'
+import cclj_2 from '@/assets/img/cclj_2.png'
+import cclj_3 from '@/assets/img/cclj_3.png'
+import bg_img from '@/assets/img/header_1.png'
 
 const router = useRouter()
 const pageType = ref('')
@@ -69,7 +84,7 @@ const isYtj = ref(false)
 
 const id = ref('section-1')
 
-const goBack = ()=>{
+const goBack = () => {
   router.go(-1)
 }
 function toSection(_id) {
@@ -121,7 +136,8 @@ const pageInfo = ref([
     type: 'dxzh',
     head: {
       img: bg_img,
-      title: '大型综合体智慧消防解决方案'
+      title:
+        '<div class="serveTitle">大型综合体智慧消防<p>解决方案</p></div>'
     },
     serviceNavList: [
       {
@@ -147,7 +163,8 @@ const pageInfo = ref([
     type: 'yyzh',
     head: {
       img: bg_img,
-      title: '医院智慧 消防解决方案'
+      title:
+        '<div class="serveTitle">医院智慧消防<p>解决方案</p></div>'
     },
     serviceNavList: [
       {
@@ -167,6 +184,87 @@ const pageInfo = ref([
       { picUrl: yyzh_1, id: 'section-1' },
       { picUrl: yyzh_2, id: 'section-2' },
       { picUrl: yyzh_3, id: 'section-3' }
+    ]
+  },
+  {
+    type: 'dlhy',
+    head: {
+      img: bg_img,
+      title:
+        '<div class="serveTitle">电力行业智慧消防<p>解决方案</p></div>'
+    },
+    serviceNavList: [
+      {
+        id: 'section-1',
+        title: '背景介绍'
+      },
+      {
+        id: 'section-2',
+        title: '方案概述'
+      },
+      {
+        id: 'section-3',
+        title: '核心功能'
+      }
+    ],
+    content: [
+      { picUrl: dlhy_1, id: 'section-1' },
+      { picUrl: dlhy_2, id: 'section-2' },
+      { picUrl: dlhy_3, id: 'section-3' }
+    ]
+  },
+  {
+    type: 'hgyq',
+    head: {
+      img: bg_img,
+      title:
+        '<div class="serveTitle">化工园区安全生产<p>智慧服务方案</p></div>'
+    },
+    serviceNavList: [
+      {
+        id: 'section-1',
+        title: '背景介绍'
+      },
+      {
+        id: 'section-2',
+        title: '主要问题'
+      },
+      {
+        id: 'section-3',
+        title: '核心功能'
+      }
+    ],
+    content: [
+      { picUrl: hgyq_1, id: 'section-1' },
+      { picUrl: hgyq_2, id: 'section-2' },
+      { picUrl: hgyq_3, id: 'section-3' }
+    ]
+  },
+  {
+    type: 'cclj',
+    head: {
+      img: bg_img,
+      title:
+        '<div class="serveTitle">餐厨垃圾<p>智能化解决方案</p></div>'
+    },
+    serviceNavList: [
+      {
+        id: 'section-1',
+        title: '背景介绍'
+      },
+      {
+        id: 'section-2',
+        title: '方案概述'
+      },
+      {
+        id: 'section-3',
+        title: '核心功能'
+      }
+    ],
+    content: [
+      { picUrl: cclj_1, id: 'section-1' },
+      { picUrl: cclj_2, id: 'section-2' },
+      { picUrl: cclj_3, id: 'section-3' }
     ]
   }
 ])
@@ -197,6 +295,14 @@ watch(
 <style lang="scss">
 .serviceDetail {
   box-sizing: border-box;
+
+  .serveTitle {
+    margin-top: 72px;
+    font-size: 42px;
+    color: rgba(0, 0, 0, 0.9);
+    max-width: 400px;
+    color: white;
+  }
 
   #myNav {
     li {

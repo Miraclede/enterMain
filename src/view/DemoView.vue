@@ -130,7 +130,7 @@ const serviceList = [
     title: '产业园区项目',
     eng_title: 'case',
     img: service6,
-    type:'产业园区项目'
+    type:'cyyq'
   },
 ]
 const industryList = [
@@ -162,21 +162,21 @@ const energyList = [
     title: '锂电池储能站项目',
     eng_title: 'case',
     img: service10,
-    type:'hghy'
+    type:'ldccn'
   },
   {
     id: 'section-11',
     title: '石油石化项目',
     eng_title: 'case',
     img: service11,
-    type:'zhjj'
+    type:'sysh'
   },
   {
     id: 'section-12',
     title: '电力电网项目',
     eng_title: 'case',
     img: service12,
-    type:'wwhy'
+    type:'dldw'
   }
 ]
 
